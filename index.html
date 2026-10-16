@@ -1,0 +1,26 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chemia – Matura rozszerzona</title><meta name="theme-color" content="#0f172a">
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--muted:#94a3b8;--fg:#e2e8f0;--acc:#22d3ee;--ok:#22c55e;--bad:#ef4444}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+header{position:sticky;top:0;background:#0b1220ee;backdrop-filter:blur(6px);padding:10px 14px;z-index:5;border-bottom:1px solid #334155}
+h1{font-size:1.15rem;margin:0 0 8px}h1 span{color:var(--acc)}
+nav{display:flex;gap:6px;overflow-x:auto}nav button{flex:none}
+button,select,input,textarea{font:inherit;color:inherit;background:#334155;border:1px solid #475569;border-radius:10px;padding:8px 12px}
+button{cursor:pointer}button:hover{border-color:var(--acc)}button.on,button.pri{background:var(--acc);color:#0f172a;border-color:var(--acc);font-weight:600}
+main{max-width:900px;margin:auto;padding:14px}.card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 20px #0005}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}.opt.ok{background:#14532d;border-color:var(--ok)}.opt.bad{background:#7f1d1d;border-color:var(--bad)}
+.muted{color:var(--muted);font-size:.9rem}.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fb{margin-top:10px;padding:10px;border-radius:10px;background:#0f172a}.bar{height:8px;background:#334155;border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+.flash{min-height:180px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.3rem;cursor:pointer;perspective:800px}
+#pt{display:grid;grid-template-columns:repeat(18,1fr);gap:2px;font-size:clamp(7px,1.6vw,13px)}
+.el{aspect-ratio:1;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:#0f172a;font-weight:700;padding:0}
+.el small{font-size:.65em;font-weight:400}.ptw{overflow-x:auto}#pt{min-width:520px}
+.s{background:#f87171}.p{background:#fbbf24}.d{background:#60a5fa}.f{background:#c084fc}
+.th ul{padding-left:18px}.th li{margin:6px 0}input{width:100%}label{display:block;margin:8px 0 2px}
+.chat{max-height:50vh;overflow:auto}.msg{padding:8px 12px;border-radius:12px;margin:6px 0;white-space:pre-wrap}.me{background:#155e75;margin-left:15%}.ai{background:#334155;margin-right:10%}
+</style></head><body>
+<header><h1>⚗️ Chemia <span>Matura rozszerzona</span> · cześć, Kacper!</h1>
+<nav id="nav"></nav></header><main id="app"></main>
+<script src="data.js"></script><script src="theory.js"></script><script src="elements.js"></script><script src="app.js"></script>
+</body></html>
