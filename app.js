@@ -1,9 +1,10 @@
 const $=s=>document.querySelector(s),app=$("#app");
 const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
-const VIEWS={start:"🏠 Start",quiz:"📝 Quiz",fc:"🃏 Fiszki",th:"📚 Teoria",pt:"🧪 Układ okresowy",calc:"🧮 Kalkulatory",ai:"🤖 Korepetytor AI"};
+const VIEWS={start:"🏠 Start",p100:"🏆 Poziom 100%",ark:"⏱️ Arkusz próbny",err:"❗ Błędy",quiz:"📝 Quiz",fc:"🃏 Fiszki",th:"📚 Teoria",wz:"📐 Wzory i stałe",pt:"🧪 Układ okresowy",calc:"🧮 Kalkulatory",ai:"🤖 Korepetytor AI"};
 $("#nav").innerHTML=Object.entries(VIEWS).map(([k,v])=>`<button data-v="${k}">${v}</button>`).join("");
 $("#nav").onclick=e=>{const v=e.target.dataset.v;if(v)go(v)};
-function go(v){location.hash=v;document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));R[v]();window.scrollTo(0,0)}
+let curV;window.addEventListener("hashchange",()=>{const v=location.hash.slice(1);if(VIEWS[v]&&v!==curV)go(v)});
+function go(v){curV=v;if(location.hash.slice(1)!==v)location.hash=v;document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));R[v]();window.scrollTo(0,0)}
 const topicOpts=(all=true)=>(all?`<option value="">🔀 Wszystkie działy (mix)</option>`:"")+Object.entries(TOPICS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
 const num=s=>parseFloat(String(s).replace(",",".").replace(/\s/g,""));
 const fmt=x=>String(+x.toPrecision(5)).replace(".",",");
@@ -29,7 +30,7 @@ app.innerHTML=`<div class="card"><div class="row" style="justify-content:space-b
 <div class="bar"><i style="width:${100*qz.i/qz.list.length}%"></i></div><h3>${q.q} <span class="muted">(${q.n!==undefined?2:1} pkt)</span></h3>
 ${o?o.map(([x,i])=>`<button class="opt" data-i="${i}">${x}</button>`).join(""):`<textarea id="sol" rows="3" style="width:100%;margin-bottom:6px" placeholder="(opcjonalnie) Twój tok rozumowania – do samooceny lub oceny przez AI"></textarea><div class="row"><input id="na" inputmode="decimal" placeholder="Twój wynik" style="flex:1"><span>${q.u||""}</span><button class="pri" id="nb">Sprawdź</button></div>`}
 <div id="fb"></div></div>`;
-const done=(ok,pts,max,why,v)=>{stat(q.t,ok);qz.ok+=ok?1:0;qz.pts=(qz.pts||0)+pts;qz.max=(qz.max||0)+max;
+const done=(ok,pts,max,why,v)=>{stat(q.t,ok);markErr("q"+Q.indexOf(q),!ok);qz.ok+=ok?1:0;qz.pts=(qz.pts||0)+pts;qz.max=(qz.max||0)+max;
 $("#fb").innerHTML=`<div class="fb"><b style="color:${ok?"var(--ok)":"var(--bad)"}">${ok?"✅ Brawo, Maju!":"❌ Niestety źle."}</b> <span style="float:right;font-weight:700" id="ptsb">${pts}/${max} pkt</span>${q.n!==undefined?`<br>Poprawna odpowiedź: <b>${fmt(q.n)} ${q.u||""}</b>`:""}
 <div style="margin-top:8px;padding:8px;border-left:3px solid var(--acc)"><b>Punktacja wg kryteriów CKE:</b><br><span id="why">${why}</span></div><p><b>Rozwiązanie:</b> ${q.e}</p>
 ${q.n!==undefined&&!ok?`<div class="row"><button id="self">Samoocena: moja metoda była poprawna (+1 pkt)</button></div>`:""}
@@ -87,7 +88,7 @@ if(!(x>0)){$("#po").textContent="Podaj poprawne dane";return}
 const p=-Math.log10(x),pH=t[1]==="a"?p:14-p;$("#po").innerHTML=`<b>pH = ${fmt(+pH.toFixed(2))}</b> · pOH = ${fmt(+(14-pH).toFixed(2))}<br><span class="muted">[${t[1]==="a"?"H⁺":"OH⁻"}] = ${x.toExponential(3)} mol/dm³${t[0]==="w"?` · α = ${fmt(100*x/C)}% (dokładne rozwiązanie równania kwadratowego)`:""}</span>`};
 ["#pt2","#pc","#pz","#pk"].forEach(s=>$(s).oninput=ph);ph()};
 // AI TUTOR (opcjonalny, własny darmowy klucz)
-const SYS="Jesteś cierpliwym korepetytorem chemii przygotowującym Maję (uczennicę) do matury rozszerzonej z chemii (CKE, formuła 2023). Zwracaj się do niej po imieniu, używając form żeńskich (np. „zrobiłaś”, „pomyliłaś się”). Odpowiadaj po polsku, zwięźle, krok po kroku, z poprawnymi wzorami i jednostkami. Gdy rozwiązujesz zadanie obliczeniowe, pokaż tok rozumowania jak w kluczu CKE. Gdy uczennica przesyła swoje rozwiązanie lub odpowiedź do oceny, ZAWSZE zacznij od „Punkty: X/Y” (wg zasad CKE: zadania zamknięte 1 pkt, obliczeniowe zwykle 2 pkt – metoda i obliczenia z wynikiem i jednostką) i uzasadnij każdy przyznany lub nieprzyznany punkt.";
+const SYS="Jesteś wymagającym, ale życzliwym korepetytorem chemii. Twoim celem jest doprowadzenie Mai (uczennicy) do wyniku 100% na maturze rozszerzonej z chemii (CKE, formuła 2023). Zwracaj się do niej po imieniu, w formach żeńskich (np. zrobiłaś, pomyliłaś się). Odpowiadaj po polsku, precyzyjnie, zgodnie z terminologią i zapisem CKE (nazewnictwo IUPAC po polsku, stopnie utlenienia, wzory półstrukturalne, jednostki, poprawne zaokrąglenia, równania w formie jonowej skróconej, gdy polecenie tego wymaga). Rozwiązując zadania obliczeniowe, pokazuj pełny tok rozumowania jak w kluczu CKE i zwracaj uwagę na typowe pułapki (niedomiar/nadmiar, jednostki, cyfry znaczące, warunki reakcji, obserwacje vs wnioski). Gdy Maja przesyła odpowiedź lub rozwiązanie do oceny, ZAWSZE zacznij od linii „Punkty: X/Y”, a potem uzasadnij każdy przyznany i nieprzyznany punkt według kryteriów CKE (zadanie zamknięte 1 pkt; obliczeniowe zwykle 2 pkt: metoda + obliczenia z wynikiem i jednostką) i wskaż, co dokładnie poprawić, żeby dostać pełną punktację. Na koniec zaproponuj jedno podobne zadanie do przećwiczenia.";
 let hist=[];
 async function askAI(text,once){const cfg=LS.get("ai",{prov:"gemini",key:"",model:""});if(!cfg.key)throw"Najpierw wklej darmowy klucz API w ustawieniach poniżej.";
 const saved=hist;if(once)hist=[];hist.push({r:"user",t:text});try{
@@ -113,4 +114,4 @@ hist.forEach(m=>add(m.r==="user"?"me":"ai",m.t));
 const send=async()=>{const t=$("#ain").value.trim();if(!t)return;$("#ain").value="";add("me",t);const d=add("ai","…");try{const o=await askAI(t);d.textContent=o;if($("#atts").checked)speak(o)}catch(e){hist.pop();d.textContent="⚠️ "+e}};
 $("#asend").onclick=send;
 if(SR)$("#amic").onclick=()=>{const r=new SR();r.lang="pl-PL";r.onresult=e=>{$("#ain").value=e.results[0][0].transcript;send()};r.onerror=e=>alert("Mikrofon: "+e.error);r.start();$("#amic").textContent="🎙️ Słucham…";r.onend=()=>$("#amic").textContent="🎤 Mów"}};
-go(VIEWS[location.hash.slice(1)]?location.hash.slice(1):"start");
+
