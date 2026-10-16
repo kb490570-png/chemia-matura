@@ -36,26 +36,41 @@ function makeCanvas(host,key,h=520){
  return{png(){const t=document.createElement("canvas");t.width=cv.width;t.height=cv.height;const c=t.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,t.width,t.height);c.drawImage(cv,0,0);return t.toDataURL("image/png")},empty:()=>!strokes.length}}
 // ===== Ocena AI z obrazu (Gemini multimodal) =====
 // ===== Ocena AI (oficjalna) =====
-const gKey=()=>{const c=LS.get("ai",{});return c.gkey||((c.prov||"gemini")==="gemini"?c.key:"")||""};
+// Gemini auth: AIza… (standardowe) i AQ.… (auth keys, od 2026) – oba przez nagłówek x-goog-api-key (bez Authorization!). Fallback: ?key=, Vertex Express, Bearer.
+const GSTRAT=["hdr","qry","vtx","bear"];
+function gReq(st,key,model,body){const gl=`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,vx=`https://aiplatform.googleapis.com/v1/publishers/google/models/${model}:generateContent`;
+ const h={"Content-Type":"application/json"};let u=gl;
+ if(st==="hdr")h["x-goog-api-key"]=key;else if(st==="qry")u=gl+"?key="+encodeURIComponent(key);else if(st==="vtx"){u=vx;h["x-goog-api-key"]=key}else h.Authorization="Bearer "+key;
+ return fetch(u,{method:"POST",headers:h,body:JSON.stringify(body)})}
+const authErr=(st,msg)=>st===401||st===403||(st===400&&/api[ _-]?key|credential|authenticat|SERVICE_BLOCKED/i.test(msg||""));
+async function gFetch(key,model,body){key=String(key||"").replace(/\s+/g,"");const pref=LS.get("gstrat","hdr");const order=[pref,...GSTRAT.filter(x=>x!==pref)];let first=null,net=null;
+ for(const st of order){let r,j;try{r=await gReq(st,key,model,body);j=await r.json().catch(()=>({}))}catch(e){net=net||e;continue}
+  if(r.ok){if(st!==pref)LS.set("gstrat",st);return{r,j,st}}
+  const msg=j.error?.message||("HTTP "+r.status);if(!first)first={r,j,st};
+  if(!authErr(r.status,msg))return{r,j,st}}
+ if(!first)throw net;return first}
+
+const gKey=()=>{const c=LS.get("ai",{});return String(c.gkey||((c.prov||"gemini")==="gemini"?c.key:"")||"").replace(/\s+/g,"")};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function keySetup(onDone){if($("#ks"))return;const d=document.createElement("div");d.id="ks";d.style.cssText="position:fixed;inset:0;background:#0b1220;z-index:99;overflow:auto;padding:24px";
  d.innerHTML=`<div class="card" style="max-width:640px;margin:0 auto"><h2>🔑 Witaj Maja! Jeden krok przed startem</h2><p>Twoje rozwiązania ocenia <b>sztuczna inteligencja Google Gemini</b> według kryteriów CKE – zupełnie <b>za darmo</b>. Potrzebny jest tylko darmowy klucz:</p>
- <ol style="line-height:1.8"><li>Otwórz <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--acc);font-weight:700">aistudio.google.com/apikey</a> i zaloguj się kontem Google.</li><li>Kliknij <b>„Create API key”</b> (Utwórz klucz API).</li><li>Skopiuj klucz (zaczyna się od <code>AIza…</code>) i wklej poniżej.</li></ol>
- <input id="ksk" placeholder="Wklej tutaj klucz AIza…" autocomplete="off" style="width:100%;font-size:1.3em;padding:16px;margin:8px 0"><div class="row"><button class="pri" id="kss" style="font-size:1.15em;padding:12px 22px">Zapisz i sprawdź klucz</button><button id="ksl">Później</button></div><p id="ksm" class="muted"></p>
+ <ol style="line-height:1.8"><li>Otwórz <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--acc);font-weight:700">aistudio.google.com/apikey</a> i zaloguj się kontem Google.</li><li>Kliknij <b>„Create API key”</b> (Utwórz klucz API).</li><li>Skopiuj klucz (zwykle zaczyna się od <code>AQ.</code>, starsze od <code>AIza</code>) i wklej poniżej.</li></ol>
+ <input id="ksk" placeholder="Wklej tutaj swój klucz Gemini" autocomplete="off" style="width:100%;font-size:1.3em;padding:16px;margin:8px 0"><div class="row"><button class="pri" id="kss" style="font-size:1.15em;padding:12px 22px">Zapisz i sprawdź klucz</button><button id="ksl">Później</button></div><p id="ksm" class="muted"></p>
  <p class="muted">Klucz zapisuje się tylko w tej przeglądarce (localStorage). Darmowy limit Gemini wystarcza na codzienną naukę; przy chwilowym limicie aplikacja sama ponowi próbę.</p></div>`;
  document.body.appendChild(d);const k=d.querySelector("#ksk");k.value=gKey();k.focus();
  d.querySelector("#ksl").onclick=()=>{LS.set("ksSkip",1);d.remove()};
- d.querySelector("#kss").onclick=async()=>{const v=k.value.trim(),m=d.querySelector("#ksm");if(!/^AIza[\w-]{20,}$/.test(v)){m.textContent="⚠️ To nie wygląda na klucz Gemini – powinien zaczynać się od „AIza”.";return}m.textContent="Sprawdzam klucz…";
-  try{const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1",{headers:{"x-goog-api-key":v}});if(r.status===400||r.status===403||r.status===401){m.textContent="⚠️ Google odrzucił ten klucz. Skopiuj go ponownie z aistudio.google.com/apikey.";return}}catch(e){/* offline – zapisz mimo to */}
-  const c=LS.get("ai",{prov:"gemini",key:"",model:""});c.gkey=v;if(!c.key||(c.prov||"gemini")==="gemini"){c.prov="gemini";c.key=v}LS.set("ai",c);m.textContent="✅ Zapisano!";setTimeout(()=>{d.remove();onDone&&onDone()},500)}}
+ d.querySelector("#kss").onclick=async()=>{const v=k.value.replace(/\s+/g,""),m=d.querySelector("#ksm");if(!v){m.textContent="⚠️ Pole jest puste – wklej klucz.";return}m.textContent="Sprawdzam klucz w Google…";
+  try{const {r,j}=await gFetch(v,"gemini-2.5-flash",{contents:[{role:"user",parts:[{text:"Odpowiedz jednym słowem: OK"}]}]});
+   if(!r.ok){const e=j.error||{};if(authErr(r.status,e.message)||r.status===400){m.innerHTML=`⚠️ Google odrzucił klucz (HTTP ${r.status}${e.status?" "+e.status:""}):<br><b>${esc(e.message||"brak komunikatu")}</b><br>Sprawdź klucz na aistudio.google.com/apikey.`;return}
+    m.innerHTML=`ℹ️ Google zwrócił HTTP ${r.status}: ${esc(e.message||"")} – zapisuję klucz (chwilowy limit/obciążenie, nie błąd klucza).`}}
+  catch(e){m.textContent="ℹ️ Brak połączenia z Google – zapisuję klucz bez sprawdzenia."}
+  const c=LS.get("ai",{prov:"gemini",key:"",model:""});c.gkey=v;if(!c.key||(c.prov||"gemini")==="gemini"){c.prov="gemini";c.key=v}LS.set("ai",c);m.textContent="✅ Zapisano!";setTimeout(()=>{d.remove();onDone&&onDone()},m.innerHTML.startsWith("ℹ️")?2500:500)}}
 async function gemini(parts,status){const key=gKey();if(!key)throw{nokey:1};const cfg=LS.get("ai",{});
  const models=[...new Set([(cfg.prov||"gemini")==="gemini"&&cfg.model?cfg.model:"gemini-2.5-flash","gemini-2.5-flash","gemini-2.0-flash"])];let last="";
  for(let att=0;att<6;att++){const model=models[Math.min(Math.floor(att/2),models.length-1)];
-  try{const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
-    body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{temperature:0.1,responseMimeType:"application/json"}})});
-   const j=await r.json().catch(()=>({}));
+  try{const {r,j}=await gFetch(key,model,{contents:[{role:"user",parts}],generationConfig:{temperature:0.1,responseMimeType:"application/json"}});
    if(r.ok){const t=j.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"";if(t)return t;last="pusta odpowiedź modelu"}
-   else{last=j.error?.message||("HTTP "+r.status);if(r.status===400&&/API key/i.test(last)||r.status===401||r.status===403)throw{badkey:1,msg:last};if(r.status===400)throw{msg:last};
+   else{last=j.error?.message||("HTTP "+r.status);if(authErr(r.status,last))throw{badkey:1,msg:last};if(r.status===400)throw{msg:last};
     if(r.status===429||r.status>=500){const rd=(j.error?.details||[]).find(x=>x.retryDelay);let w=rd?parseFloat(rd.retryDelay)*1000:2000*2**att;w=Math.min(w,30000);
      for(let s=Math.ceil(w/1000);s>0;s--){status&&status(`⏳ Limit/obciążenie Gemini (${r.status}) – ponawiam za ${s} s (próba ${att+2}/6)…`);await sleep(1000)}continue}}}
   catch(e){if(e.badkey||e.msg&&!e.net)throw e;last="brak połączenia z internetem";status&&status("⏳ Problem z siecią – ponawiam…");await sleep(2000*2**att)}}

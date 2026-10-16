@@ -94,7 +94,7 @@ let hist=[];
 async function askAI(text,once){const cfg=LS.get("ai",{prov:"gemini",key:"",model:""});if(!cfg.key)throw"Najpierw wklej darmowy klucz API w ustawieniach poniżej.";
 const saved=hist;if(once)hist=[];hist.push({r:"user",t:text});try{
 if(cfg.prov==="gemini"){const model=cfg.model||"gemini-2.5-flash";
- const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":cfg.key},body:JSON.stringify({systemInstruction:{parts:[{text:SYS}]},contents:hist.map(m=>({role:m.r==="user"?"user":"model",parts:[{text:m.t}]}))})});
+ const {r,j:_j}=await gFetch(cfg.key,model,{systemInstruction:{parts:[{text:SYS}]},contents:hist.map(m=>({role:m.r==="user"?"user":"model",parts:[{text:m.t}]}))});r.json=async()=>_j;
  const j=await r.json();if(!r.ok)throw(j.error?.message||r.status);const out=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||"(brak odpowiedzi)";hist.push({r:"ai",t:out});return out}
 const model=cfg.model||"llama-3.3-70b-versatile";
 const r=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+cfg.key},body:JSON.stringify({model,messages:[{role:"system",content:SYS},...hist.map(m=>({role:m.r==="user"?"user":"assistant",content:m.t}))]})});
@@ -108,7 +108,7 @@ app.innerHTML=`<div class="card"><h2>🤖 Korepetytor AI</h2><p class="muted">Op
 <label>Dostawca</label><select id="aprov"><option value="gemini">Google Gemini (zalecany, darmowy)</option><option value="groq">Groq (zapasowy, darmowy)</option></select>
 <label>Klucz API</label><input id="akey" type="password" value="${cfg.key}"><label>Model (puste = domyślny: gemini-2.5-flash / llama-3.3-70b-versatile)</label><input id="amodel" value="${cfg.model}">
 <p class="muted">Gemini: wejdź na <a style="color:var(--acc)" href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> → „Create API key”. Groq: <a style="color:var(--acc)" href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>.</p><button id="asave">Zapisz</button></details>`;
-$("#aprov").value=cfg.prov;$("#asave").onclick=()=>{LS.set("ai",{prov:$("#aprov").value,key:$("#akey").value.trim(),model:$("#amodel").value.trim()});alert("Zapisano")};
+$("#aprov").value=cfg.prov;$("#asave").onclick=()=>{LS.set("ai",{prov:$("#aprov").value,key:$("#akey").value.replace(/\s+/g,""),gkey:$("#aprov").value==="gemini"?$("#akey").value.replace(/\s+/g,""):(LS.get("ai",{}).gkey||""),model:$("#amodel").value.trim()});alert("Zapisano")};
 $("#atts").onchange=e=>LS.set("tts",e.target.checked);
 const add=(c,t)=>{const d=document.createElement("div");d.className="msg "+c;d.textContent=t;$("#chat").appendChild(d);$("#chat").scrollTop=1e9;return d};
 hist.forEach(m=>add(m.r==="user"?"me":"ai",m.t));
