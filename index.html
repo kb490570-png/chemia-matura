@@ -20,8 +20,21 @@ main{max-width:900px;margin:auto;padding:14px}.card{background:var(--card);borde
 .th ul{padding-left:18px}.th li{margin:6px 0}input{width:100%}label{display:block;margin:8px 0 2px}
 .chat{max-height:50vh;overflow:auto}.msg{padding:8px 12px;border-radius:12px;margin:6px 0;white-space:pre-wrap}.me{background:#155e75;margin-left:15%}.ai{background:#334155;margin-right:10%}
 table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #334155;padding:6px;text-align:left;vertical-align:top}.cvbar{margin:6px 0}.cvbar button{padding:6px 10px}.sw.on{outline:3px solid var(--acc)}
-@media(min-width:700px){main{max-width:1000px}}</style></head><body>
+@media(min-width:700px){main{max-width:1000px}}
+.ptw{overflow:auto;-webkit-overflow-scrolling:touch}.ptg{display:grid;grid-template-columns:22px repeat(18,minmax(46px,1fr));gap:2px;min-width:900px;font-family:Arial,Helvetica,sans-serif}
+.pc{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px 1px;border-radius:3px;border:1px solid #64748b;color:#0f172a;line-height:1.05;min-height:62px;cursor:pointer}
+.pc b{font-size:15px}.pc .pz{font-size:9px;align-self:flex-start}.pc .pn{font-size:8px}.pc .pm{font-size:9px}.pc .pe{font-size:9px;font-weight:700;min-height:9px}
+.c-m{background:#c7d2fe}.c-pm{background:#fbbf24}.c-nm{background:#fef08a}.c-gs{background:#d9f99d}.c-bp{background:#f8fafc}
+.gl,.pl,.fl{display:flex;align-items:flex-end;justify-content:center;font-weight:700;color:var(--fg);font-size:13px}.pl,.fl{align-items:center}
+.ptleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.8rem}.ptleg i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:4px;vertical-align:middle;border:1px solid #64748b}
+.fab{position:fixed;right:14px;z-index:50;width:56px;height:56px;border-radius:50%;font-size:24px;padding:0;background:var(--acc);color:#0f172a;border:none;box-shadow:0 4px 16px #0008}
+#ov{position:fixed;inset:0;background:#0b1220;z-index:60;display:none;flex-direction:column}#ov.open{display:flex}
+#ovh{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid #334155}#ovb{flex:1;overflow:auto;padding:10px;touch-action:pan-x pan-y pinch-zoom;-webkit-overflow-scrolling:touch}
+#ovz{transform-origin:0 0}#ovd{position:sticky;bottom:0;margin-top:8px}
+</style></head><body>
 <header><h1>⚗️ Chemia <span>Matura rozszerzona</span> · Maja</h1>
 <nav id="nav"></nav></header><main id="app"></main>
+<button class="fab" id="fabPt" style="bottom:84px" title="Układ okresowy">🧪</button><button class="fab" id="fabWz" style="bottom:16px" title="Wzory i stałe">📐</button>
+<div id="ov"><div id="ovh"><b id="ovt" style="flex:1"></b><button id="ovm">−</button><button id="ovp">+</button><button id="ovx" class="pri">✕ Zamknij</button></div><div id="ovb"><div id="ovz"></div><div id="ovd" class="fb" style="display:none"></div></div></div>
 <script src="data.js"></script><script src="theory.js"></script><script src="elements.js"></script><script src="open.js"></script><script src="theory2.js"></script><script src="app.js"></script><script src="app2.js"></script>
 </body></html>

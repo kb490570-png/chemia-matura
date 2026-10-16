@@ -113,3 +113,13 @@ R.wz=()=>{app.innerHTML=`<div class="card wz">${WZORY}</div>`};
 const _start=R.start;R.start=()=>{_start();const og=LS.get("og",{}),e=Object.keys(LS.get("errs",{})).length;let p=0,m=0;Object.values(og).forEach(g=>{p+=g.pts;m+=g.max});
  app.insertAdjacentHTML("beforeend",`<div class="card"><h3>🏆 Droga do 100%</h3><p>Zadania otwarte: ${Object.keys(og).length}/${OQ.length}${m?` · ${p}/${m} pkt (${Math.round(100*p/m)}%)`:""} · do poprawy: ${e}</p><div class="row"><button class="pri" onclick="go('p100')">Poziom 100%</button><button onclick="go('ark')">Arkusz próbny</button><button onclick="go('err')">Błędy</button></div></div>`)};
 go(VIEWS[location.hash.slice(1)]?location.hash.slice(1):"start");
+
+// ===== Pływające panele: układ okresowy i wzory (nie przerysowują widoku – kanwa i timer zostają) =====
+(function(){let mode=null,zoom=1;const ov=$("#ov"),z=$("#ovz"),d=$("#ovd");
+ function open(m){if(mode===m&&ov.classList.contains("open")){close();return}mode=m;zoom=1;z.style.transform="";d.style.display="none";
+  $("#ovt").textContent=m==="pt"?"🧪 Układ okresowy (karta CKE)":"📐 Wybrane wzory i stałe";z.innerHTML=m==="pt"?ptHTML():`<div class="wz" style="max-width:900px">${WZORY}</div>`;ov.classList.add("open")}
+ function close(){ov.classList.remove("open")}
+ $("#fabPt").onclick=()=>open("pt");$("#fabWz").onclick=()=>open("wz");$("#ovx").onclick=close;
+ const zz=f=>{zoom=Math.min(3,Math.max(0.5,zoom*f));z.style.transform=`scale(${zoom})`;z.style.width=(100/zoom)+"%"};$("#ovp").onclick=()=>zz(1.25);$("#ovm").onclick=()=>zz(0.8);
+ z.addEventListener("click",ev=>{const b=ev.target.closest(".pc");if(!b)return;d.style.display="block";d.innerHTML=elDetails(+b.dataset.z)+`<button onclick="this.parentNode.style.display='none'">Ukryj</button>`});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});})();

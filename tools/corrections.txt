@@ -1,0 +1,107 @@
+2 He: masa 4.003→4,00
+3 Li: EN 0.98→1,0
+4 Be: masa 9.012→9,01; EN 1.57→1,6
+5 B: EN 2.04→2,0
+6 C: masa 12.011→12,01; EN 2.55→2,6
+7 N: masa 14.007→14,01; EN 3.04→3,0
+8 O: masa 15.999→16,00; EN 3.44→3,4
+9 F: masa 18.998→19,00; EN 3.98→4,0
+11 Na: EN 0.93→0,9
+12 Mg: masa 24.305→24,31; EN 1.31→1,3
+13 Al: masa 26.982→26,98; EN 1.61→1,6
+14 Si: masa 28.085→28,09
+15 P: masa 30.974→30,97; EN 2.19→2,2
+16 S: EN 2.58→2,6
+17 Cl: EN 3.16→3,2
+19 K: masa 39.098→39,10; EN 0.82→0,8
+20 Ca: masa 40.078→40,08
+21 Sc: masa 44.956→44,96; EN 1.36→1,4
+22 Ti: masa 47.867→47,87; EN 1.54→1,5
+23 V: masa 50.942→50,94; EN 1.63→1,6
+24 Cr: masa 51.996→52,00; EN 1.66→1,7
+25 Mn: masa 54.938→54,94; EN 1.55→1,6
+26 Fe: masa 55.845→55,85; EN 1.83→1,8
+27 Co: masa 58.933→58,93; EN 1.88→1,9
+28 Ni: masa 58.693→58,69; EN 1.91→1,9
+29 Cu: masa 63.546→63,55
+30 Zn: EN 1.65→1,7
+31 Ga: masa 69.723→69,72; EN 1.81→1,8
+32 Ge: EN 2.01→2,0
+33 As: masa 74.922→74,92; EN 2.18→2,2
+34 Se: masa 78.971→78,97; EN 2.55→2,6
+35 Br: masa 79.904→79,90; EN 2.96→3,0
+36 Kr: masa 83.798→83,80; EN 3→brak (jak na karcie CKE)
+37 Rb: masa 85.468→85,47; EN 0.82→0,8
+38 Sr: EN 0.95→1,0
+39 Y: masa 88.906→88,91; EN 1.22→1,2
+40 Zr: masa 91.224→91,22; EN 1.33→1,3
+41 Nb: masa 92.906→92,91
+42 Mo: EN 2.16→2,2
+43 Tc: masa 98→97,91 []; EN 1.9→2,1
+45 Rh: EN 2.28→2,3
+47 Ag: EN 1.93→1,9
+48 Cd: EN 1.69→1,7
+49 In: EN 1.78→1,8
+50 Sn: EN 1.96→2,0
+51 Sb: EN 2.05→2,1
+53 I: EN 2.66→2,7
+54 Xe: EN 2.6→brak (jak na karcie CKE)
+55 Cs: EN 0.79→0,8
+56 Ba: EN 0.89→0,9
+57 La: pozycja (kol 3, wiersz 9)→(kol 3, wiersz 6)
+58 Ce: EN 1.12→brak (jak na karcie CKE)
+59 Pr: EN 1.13→brak (jak na karcie CKE)
+60 Nd: EN 1.14→brak (jak na karcie CKE)
+61 Pm: masa 145→144,91 []; EN 1.13→brak (jak na karcie CKE)
+62 Sm: EN 1.17→brak (jak na karcie CKE)
+63 Eu: EN 1.2→brak (jak na karcie CKE)
+64 Gd: EN 1.2→brak (jak na karcie CKE)
+65 Tb: EN 1.1→brak (jak na karcie CKE)
+66 Dy: EN 1.22→brak (jak na karcie CKE)
+67 Ho: EN 1.23→brak (jak na karcie CKE)
+68 Er: EN 1.24→brak (jak na karcie CKE)
+69 Tm: EN 1.25→brak (jak na karcie CKE)
+70 Yb: EN 1.1→brak (jak na karcie CKE)
+71 Lu: EN 1.27→brak (jak na karcie CKE)
+74 W: EN 2.36→1,7
+78 Pt: EN 2.28→2,2
+79 Au: EN 2.54→2,4
+80 Hg: EN 2→1,9
+81 Tl: EN 1.62→1,8
+82 Pb: EN 2.33→1,8
+83 Bi: EN 2.02→1,9
+84 Po: masa 209→208,98 []
+85 At: masa 210→209,99 []
+86 Rn: masa 222→222,02 []; EN 2.2→brak (jak na karcie CKE)
+87 Fr: masa 223→223,02 []
+88 Ra: masa 226→226,03 []
+89 Ac: masa 227→227,03 []; EN 1.1→brak (jak na karcie CKE); pozycja (kol 3, wiersz 10)→(kol 3, wiersz 7)
+90 Th: EN 1.3→brak (jak na karcie CKE)
+91 Pa: EN 1.5→brak (jak na karcie CKE)
+92 U: EN 1.38→brak (jak na karcie CKE)
+93 Np: masa 237→237,05 []; EN 1.36→brak (jak na karcie CKE)
+94 Pu: masa 244→244,06 []; EN 1.28→brak (jak na karcie CKE)
+95 Am: masa 243→243,06 []; EN 1.13→brak (jak na karcie CKE)
+96 Cm: masa 247→247,07 []; EN 1.28→brak (jak na karcie CKE)
+97 Bk: masa 247→247,07 []; EN 1.3→brak (jak na karcie CKE)
+98 Cf: masa 251→251,08 []; EN 1.3→brak (jak na karcie CKE)
+99 Es: masa 252→252,08 []; EN 1.3→brak (jak na karcie CKE)
+100 Fm: masa 257→257,10 []; EN 1.3→brak (jak na karcie CKE)
+101 Md: masa 258→258,10 []; EN 1.3→brak (jak na karcie CKE)
+102 No: masa 259→259,10 []; EN 1.3→brak (jak na karcie CKE)
+103 Lr: masa 266→262,11 []
+104 Rf: masa 267→267,12 []
+105 Db: masa 268→268,13 []
+106 Sg: masa 269→271,13 []
+107 Bh: masa 270→272,14 []
+108 Hs: masa 269→270,13 []
+109 Mt: masa 278→276,15 []
+110 Ds: masa 281→281,16 []
+111 Rg: masa 282→280,17 []
+112 Cn: masa 285→285,18 []
+113 Nh: masa 286→284,18 []
+114 Fl: masa 289→289,19 []
+115 Mc: masa 290→288,19 []
+116 Lv: masa 293→293,20 []
+117 Ts: masa 294→292,21 []
+118 Og: masa 294→294,21 []

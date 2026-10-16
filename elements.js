@@ -1,133 +1,18 @@
-// symbol,name,mass,EN(Pauling or null),group,period
-const EL=`H,Wodór,1.008,2.20
-He,Hel,4.003,
-Li,Lit,6.94,0.98
-Be,Beryl,9.012,1.57
-B,Bor,10.81,2.04
-C,Węgiel,12.011,2.55
-N,Azot,14.007,3.04
-O,Tlen,15.999,3.44
-F,Fluor,18.998,3.98
-Ne,Neon,20.180,
-Na,Sód,22.990,0.93
-Mg,Magnez,24.305,1.31
-Al,Glin,26.982,1.61
-Si,Krzem,28.085,1.90
-P,Fosfor,30.974,2.19
-S,Siarka,32.06,2.58
-Cl,Chlor,35.45,3.16
-Ar,Argon,39.95,
-K,Potas,39.098,0.82
-Ca,Wapń,40.078,1.00
-Sc,Skand,44.956,1.36
-Ti,Tytan,47.867,1.54
-V,Wanad,50.942,1.63
-Cr,Chrom,51.996,1.66
-Mn,Mangan,54.938,1.55
-Fe,Żelazo,55.845,1.83
-Co,Kobalt,58.933,1.88
-Ni,Nikiel,58.693,1.91
-Cu,Miedź,63.546,1.90
-Zn,Cynk,65.38,1.65
-Ga,Gal,69.723,1.81
-Ge,German,72.630,2.01
-As,Arsen,74.922,2.18
-Se,Selen,78.971,2.55
-Br,Brom,79.904,2.96
-Kr,Krypton,83.798,3.00
-Rb,Rubid,85.468,0.82
-Sr,Stront,87.62,0.95
-Y,Itr,88.906,1.22
-Zr,Cyrkon,91.224,1.33
-Nb,Niob,92.906,1.6
-Mo,Molibden,95.95,2.16
-Tc,Technet,98,1.9
-Ru,Ruten,101.07,2.2
-Rh,Rod,102.91,2.28
-Pd,Pallad,106.42,2.20
-Ag,Srebro,107.87,1.93
-Cd,Kadm,112.41,1.69
-In,Ind,114.82,1.78
-Sn,Cyna,118.71,1.96
-Sb,Antymon,121.76,2.05
-Te,Tellur,127.60,2.1
-I,Jod,126.90,2.66
-Xe,Ksenon,131.29,2.6
-Cs,Cez,132.91,0.79
-Ba,Bar,137.33,0.89
-La,Lantan,138.91,1.10
-Ce,Cer,140.12,1.12
-Pr,Prazeodym,140.91,1.13
-Nd,Neodym,144.24,1.14
-Pm,Promet,145,1.13
-Sm,Samar,150.36,1.17
-Eu,Europ,151.96,1.2
-Gd,Gadolin,157.25,1.20
-Tb,Terb,158.93,1.1
-Dy,Dysproz,162.50,1.22
-Ho,Holm,164.93,1.23
-Er,Erb,167.26,1.24
-Tm,Tul,168.93,1.25
-Yb,Iterb,173.05,1.1
-Lu,Lutet,174.97,1.27
-Hf,Hafn,178.49,1.3
-Ta,Tantal,180.95,1.5
-W,Wolfram,183.84,2.36
-Re,Ren,186.21,1.9
-Os,Osm,190.23,2.2
-Ir,Iryd,192.22,2.20
-Pt,Platyna,195.08,2.28
-Au,Złoto,196.97,2.54
-Hg,Rtęć,200.59,2.00
-Tl,Tal,204.38,1.62
-Pb,Ołów,207.2,2.33
-Bi,Bizmut,208.98,2.02
-Po,Polon,209,2.0
-At,Astat,210,2.2
-Rn,Radon,222,2.2
-Fr,Frans,223,0.7
-Ra,Rad,226,0.9
-Ac,Aktyn,227,1.1
-Th,Tor,232.04,1.3
-Pa,Protaktyn,231.04,1.5
-U,Uran,238.03,1.38
-Np,Neptun,237,1.36
-Pu,Pluton,244,1.28
-Am,Ameryk,243,1.13
-Cm,Kiur,247,1.28
-Bk,Berkel,247,1.3
-Cf,Kaliforn,251,1.3
-Es,Einstein,252,1.3
-Fm,Ferm,257,1.3
-Md,Mendelew,258,1.3
-No,Nobel,259,1.3
-Lr,Lorens,266,
-Rf,Rutherford,267,
-Db,Dubn,268,
-Sg,Seaborg,269,
-Bh,Bohr,270,
-Hs,Has,269,
-Mt,Meitner,278,
-Ds,Darmsztadt,281,
-Rg,Roentgen,282,
-Cn,Kopernik,285,
-Nh,Nihon,286,
-Fl,Flerow,289,
-Mc,Moskow,290,
-Lv,Liwermor,293,
-Ts,Tenes,294,
-Og,Oganeson,294,`.split("\n").map((l,i)=>{const[s,n,m,e]=l.split(",");return{z:i+1,s,n,m:+m,e:e?+e:null}});
-const SUB=["1s","2s","2p","3s","3p","4s","3d","4p","5s","4d","5p","6s","4f","5d","6p","7s","5f","6d","7p"];
-const CAP={s:2,p:6,d:10,f:14};
-const EXC={24:"[Ar] 4s¹ 3d⁵",29:"[Ar] 4s¹ 3d¹⁰",41:"[Kr] 5s¹ 4d⁴",42:"[Kr] 5s¹ 4d⁵",44:"[Kr] 5s¹ 4d⁷",45:"[Kr] 5s¹ 4d⁸",46:"[Kr] 4d¹⁰",47:"[Kr] 5s¹ 4d¹⁰",57:"[Xe] 6s² 5d¹",58:"[Xe] 6s² 4f¹ 5d¹",64:"[Xe] 6s² 4f⁷ 5d¹",78:"[Xe] 6s¹ 4f¹⁴ 5d⁹",79:"[Xe] 6s¹ 4f¹⁴ 5d¹⁰",89:"[Rn] 7s² 6d¹",90:"[Rn] 7s² 6d²",91:"[Rn] 7s² 5f² 6d¹",92:"[Rn] 7s² 5f³ 6d¹",93:"[Rn] 7s² 5f⁴ 6d¹",96:"[Rn] 7s² 5f⁷ 6d¹"};
-const SUP=n=>String(n).split("").map(d=>"⁰¹²³⁴⁵⁶⁷⁸⁹"[d]).join("");
-const NOBLE=[[86,"Rn"],[54,"Xe"],[36,"Kr"],[18,"Ar"],[10,"Ne"],[2,"He"]];
-function config(z){if(EXC[z])return EXC[z];let left=z,parts=[];for(const s of SUB){if(!left)break;const k=Math.min(CAP[s[1]],left);parts.push([s,k]);left-=k}
- let core=NOBLE.find(([nz])=>nz<z);let start=0,acc=0;if(core){for(let i=0;i<parts.length;i++){acc+=parts[i][1];if(acc===core[0]){start=i+1;break}}}
- return (core?"["+core[1]+"] ":"")+parts.slice(start).map(([s,k])=>s+SUP(k)).join(" ")}
-function pos(z){if(z===1)return[1,1];if(z===2)return[18,1];const P=[[3,10,2],[11,18,3],[19,36,4],[37,54,5],[55,86,6],[87,118,7]];
- for(const[a,b,p]of P)if(z>=a&&z<=b){let i=z-a;if(p<=3){return[i<2?i+1:i+11,p]}
- if(p<=5)return[i+1,p];if(i<2)return[i+1,p];if(i<17)return[i-2+3,p+3];/*lanth/act row*/return[i-14+1+0,p]}}
-// fix f-block: z 57-71 / 89-103 go to rows 9/10 cols 3..17; others normal
-function pos2(z){const f=(z>=57&&z<=71)||(z>=89&&z<=103);if(f)return[z-(z<80?57:89)+3,z<80?9:10];
- if(z>71&&z<87)return[z-72+4,6];if(z>103)return[z-104+4,7];return pos(z)}
+// Wygenerowano: tools/build_pt.py – dane z karty CKE „Wybrane wzory i stałe fizykochemiczne” (EM2023, s. 15), konfiguracje: PubChem
+const EL=[{"z": 1, "s": "H", "n": "Wodór", "m": 1.008, "r": false, "e": "2,2", "g": 1, "p": 1, "c": "nm", "cf": "1s¹", "ms": "1,008", "es": "2,2"}, {"z": 2, "s": "He", "n": "Hel", "m": 4.0, "r": false, "e": null, "g": 18, "p": 1, "c": "gs", "cf": "1s²", "ms": "4,00", "es": null}, {"z": 3, "s": "Li", "n": "Lit", "m": 6.94, "r": false, "e": "1,0", "g": 1, "p": 2, "c": "m", "cf": "[He] 2s¹", "ms": "6,94", "es": "1,0"}, {"z": 4, "s": "Be", "n": "Beryl", "m": 9.01, "r": false, "e": "1,6", "g": 2, "p": 2, "c": "m", "cf": "[He] 2s²", "ms": "9,01", "es": "1,6"}, {"z": 5, "s": "B", "n": "Bor", "m": 10.81, "r": false, "e": "2,0", "g": 13, "p": 2, "c": "pm", "cf": "[He] 2s² 2p¹", "ms": "10,81", "es": "2,0"}, {"z": 6, "s": "C", "n": "Węgiel", "m": 12.01, "r": false, "e": "2,6", "g": 14, "p": 2, "c": "nm", "cf": "[He] 2s² 2p²", "ms": "12,01", "es": "2,6"}, {"z": 7, "s": "N", "n": "Azot", "m": 14.01, "r": false, "e": "3,0", "g": 15, "p": 2, "c": "nm", "cf": "[He] 2s² 2p³", "ms": "14,01", "es": "3,0"}, {"z": 8, "s": "O", "n": "Tlen", "m": 16.0, "r": false, "e": "3,4", "g": 16, "p": 2, "c": "nm", "cf": "[He] 2s² 2p⁴", "ms": "16,00", "es": "3,4"}, {"z": 9, "s": "F", "n": "Fluor", "m": 19.0, "r": false, "e": "4,0", "g": 17, "p": 2, "c": "nm", "cf": "[He] 2s² 2p⁵", "ms": "19,00", "es": "4,0"}, {"z": 10, "s": "Ne", "n": "Neon", "m": 20.18, "r": false, "e": null, "g": 18, "p": 2, "c": "gs", "cf": "[He] 2s² 2p⁶", "ms": "20,18", "es": null}, {"z": 11, "s": "Na", "n": "Sód", "m": 22.99, "r": false, "e": "0,9", "g": 1, "p": 3, "c": "m", "cf": "[Ne] 3s¹", "ms": "22,99", "es": "0,9"}, {"z": 12, "s": "Mg", "n": "Magnez", "m": 24.31, "r": false, "e": "1,3", "g": 2, "p": 3, "c": "m", "cf": "[Ne] 3s²", "ms": "24,31", "es": "1,3"}, {"z": 13, "s": "Al", "n": "Glin", "m": 26.98, "r": false, "e": "1,6", "g": 13, "p": 3, "c": "m", "cf": "[Ne] 3s² 3p¹", "ms": "26,98", "es": "1,6"}, {"z": 14, "s": "Si", "n": "Krzem", "m": 28.09, "r": false, "e": "1,9", "g": 14, "p": 3, "c": "pm", "cf": "[Ne] 3s² 3p²", "ms": "28,09", "es": "1,9"}, {"z": 15, "s": "P", "n": "Fosfor", "m": 30.97, "r": false, "e": "2,2", "g": 15, "p": 3, "c": "nm", "cf": "[Ne] 3s² 3p³", "ms": "30,97", "es": "2,2"}, {"z": 16, "s": "S", "n": "Siarka", "m": 32.06, "r": false, "e": "2,6", "g": 16, "p": 3, "c": "nm", "cf": "[Ne] 3s² 3p⁴", "ms": "32,06", "es": "2,6"}, {"z": 17, "s": "Cl", "n": "Chlor", "m": 35.45, "r": false, "e": "3,2", "g": 17, "p": 3, "c": "nm", "cf": "[Ne] 3s² 3p⁵", "ms": "35,45", "es": "3,2"}, {"z": 18, "s": "Ar", "n": "Argon", "m": 39.95, "r": false, "e": null, "g": 18, "p": 3, "c": "gs", "cf": "[Ne] 3s² 3p⁶", "ms": "39,95", "es": null}, {"z": 19, "s": "K", "n": "Potas", "m": 39.1, "r": false, "e": "0,8", "g": 1, "p": 4, "c": "m", "cf": "[Ar] 4s¹", "ms": "39,10", "es": "0,8"}, {"z": 20, "s": "Ca", "n": "Wapń", "m": 40.08, "r": false, "e": "1,0", "g": 2, "p": 4, "c": "m", "cf": "[Ar] 4s²", "ms": "40,08", "es": "1,0"}, {"z": 21, "s": "Sc", "n": "Skand", "m": 44.96, "r": false, "e": "1,4", "g": 3, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d¹", "ms": "44,96", "es": "1,4"}, {"z": 22, "s": "Ti", "n": "Tytan", "m": 47.87, "r": false, "e": "1,5", "g": 4, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d²", "ms": "47,87", "es": "1,5"}, {"z": 23, "s": "V", "n": "Wanad", "m": 50.94, "r": false, "e": "1,6", "g": 5, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d³", "ms": "50,94", "es": "1,6"}, {"z": 24, "s": "Cr", "n": "Chrom", "m": 52.0, "r": false, "e": "1,7", "g": 6, "p": 4, "c": "m", "cf": "[Ar] 4s¹ 3d⁵", "ms": "52,00", "es": "1,7"}, {"z": 25, "s": "Mn", "n": "Mangan", "m": 54.94, "r": false, "e": "1,6", "g": 7, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d⁵", "ms": "54,94", "es": "1,6"}, {"z": 26, "s": "Fe", "n": "Żelazo", "m": 55.85, "r": false, "e": "1,8", "g": 8, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d⁶", "ms": "55,85", "es": "1,8"}, {"z": 27, "s": "Co", "n": "Kobalt", "m": 58.93, "r": false, "e": "1,9", "g": 9, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d⁷", "ms": "58,93", "es": "1,9"}, {"z": 28, "s": "Ni", "n": "Nikiel", "m": 58.69, "r": false, "e": "1,9", "g": 10, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d⁸", "ms": "58,69", "es": "1,9"}, {"z": 29, "s": "Cu", "n": "Miedź", "m": 63.55, "r": false, "e": "1,9", "g": 11, "p": 4, "c": "m", "cf": "[Ar] 4s¹ 3d¹⁰", "ms": "63,55", "es": "1,9"}, {"z": 30, "s": "Zn", "n": "Cynk", "m": 65.38, "r": false, "e": "1,7", "g": 12, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d¹⁰", "ms": "65,38", "es": "1,7"}, {"z": 31, "s": "Ga", "n": "Gal", "m": 69.72, "r": false, "e": "1,8", "g": 13, "p": 4, "c": "m", "cf": "[Ar] 4s² 3d¹⁰ 4p¹", "ms": "69,72", "es": "1,8"}, {"z": 32, "s": "Ge", "n": "German", "m": 72.63, "r": false, "e": "2,0", "g": 14, "p": 4, "c": "pm", "cf": "[Ar] 4s² 3d¹⁰ 4p²", "ms": "72,63", "es": "2,0"}, {"z": 33, "s": "As", "n": "Arsen", "m": 74.92, "r": false, "e": "2,2", "g": 15, "p": 4, "c": "pm", "cf": "[Ar] 4s² 3d¹⁰ 4p³", "ms": "74,92", "es": "2,2"}, {"z": 34, "s": "Se", "n": "Selen", "m": 78.97, "r": false, "e": "2,6", "g": 16, "p": 4, "c": "nm", "cf": "[Ar] 4s² 3d¹⁰ 4p⁴", "ms": "78,97", "es": "2,6"}, {"z": 35, "s": "Br", "n": "Brom", "m": 79.9, "r": false, "e": "3,0", "g": 17, "p": 4, "c": "nm", "cf": "[Ar] 4s² 3d¹⁰ 4p⁵", "ms": "79,90", "es": "3,0"}, {"z": 36, "s": "Kr", "n": "Krypton", "m": 83.8, "r": false, "e": null, "g": 18, "p": 4, "c": "gs", "cf": "[Ar] 4s² 3d¹⁰ 4p⁶", "ms": "83,80", "es": null}, {"z": 37, "s": "Rb", "n": "Rubid", "m": 85.47, "r": false, "e": "0,8", "g": 1, "p": 5, "c": "m", "cf": "[Kr] 5s¹", "ms": "85,47", "es": "0,8"}, {"z": 38, "s": "Sr", "n": "Stront", "m": 87.62, "r": false, "e": "1,0", "g": 2, "p": 5, "c": "m", "cf": "[Kr] 5s²", "ms": "87,62", "es": "1,0"}, {"z": 39, "s": "Y", "n": "Itr", "m": 88.91, "r": false, "e": "1,2", "g": 3, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d¹", "ms": "88,91", "es": "1,2"}, {"z": 40, "s": "Zr", "n": "Cyrkon", "m": 91.22, "r": false, "e": "1,3", "g": 4, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d²", "ms": "91,22", "es": "1,3"}, {"z": 41, "s": "Nb", "n": "Niob", "m": 92.91, "r": false, "e": "1,6", "g": 5, "p": 5, "c": "m", "cf": "[Kr] 5s¹ 4d⁴", "ms": "92,91", "es": "1,6"}, {"z": 42, "s": "Mo", "n": "Molibden", "m": 95.95, "r": false, "e": "2,2", "g": 6, "p": 5, "c": "m", "cf": "[Kr] 5s¹ 4d⁵", "ms": "95,95", "es": "2,2"}, {"z": 43, "s": "Tc", "n": "Technet", "m": 97.91, "r": true, "e": "2,1", "g": 7, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d⁵", "ms": "97,91", "es": "2,1"}, {"z": 44, "s": "Ru", "n": "Ruten", "m": 101.07, "r": false, "e": "2,2", "g": 8, "p": 5, "c": "m", "cf": "[Kr] 5s¹ 4d⁷", "ms": "101,07", "es": "2,2"}, {"z": 45, "s": "Rh", "n": "Rod", "m": 102.91, "r": false, "e": "2,3", "g": 9, "p": 5, "c": "m", "cf": "[Kr] 5s¹ 4d⁸", "ms": "102,91", "es": "2,3"}, {"z": 46, "s": "Pd", "n": "Pallad", "m": 106.42, "r": false, "e": "2,2", "g": 10, "p": 5, "c": "m", "cf": "[Kr] 4d¹⁰", "ms": "106,42", "es": "2,2"}, {"z": 47, "s": "Ag", "n": "Srebro", "m": 107.87, "r": false, "e": "1,9", "g": 11, "p": 5, "c": "m", "cf": "[Kr] 5s¹ 4d¹⁰", "ms": "107,87", "es": "1,9"}, {"z": 48, "s": "Cd", "n": "Kadm", "m": 112.41, "r": false, "e": "1,7", "g": 12, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d¹⁰", "ms": "112,41", "es": "1,7"}, {"z": 49, "s": "In", "n": "Ind", "m": 114.82, "r": false, "e": "1,8", "g": 13, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d¹⁰ 5p¹", "ms": "114,82", "es": "1,8"}, {"z": 50, "s": "Sn", "n": "Cyna", "m": 118.71, "r": false, "e": "2,0", "g": 14, "p": 5, "c": "m", "cf": "[Kr] 5s² 4d¹⁰ 5p²", "ms": "118,71", "es": "2,0"}, {"z": 51, "s": "Sb", "n": "Antymon", "m": 121.76, "r": false, "e": "2,1", "g": 15, "p": 5, "c": "pm", "cf": "[Kr] 5s² 4d¹⁰ 5p³", "ms": "121,76", "es": "2,1"}, {"z": 52, "s": "Te", "n": "Tellur", "m": 127.6, "r": false, "e": "2,1", "g": 16, "p": 5, "c": "pm", "cf": "[Kr] 5s² 4d¹⁰ 5p⁴", "ms": "127,60", "es": "2,1"}, {"z": 53, "s": "I", "n": "Jod", "m": 126.9, "r": false, "e": "2,7", "g": 17, "p": 5, "c": "nm", "cf": "[Kr] 5s² 4d¹⁰ 5p⁵", "ms": "126,90", "es": "2,7"}, {"z": 54, "s": "Xe", "n": "Ksenon", "m": 131.29, "r": false, "e": null, "g": 18, "p": 5, "c": "gs", "cf": "[Kr] 5s² 4d¹⁰ 5p⁶", "ms": "131,29", "es": null}, {"z": 55, "s": "Cs", "n": "Cez", "m": 132.91, "r": false, "e": "0,8", "g": 1, "p": 6, "c": "m", "cf": "[Xe] 6s¹", "ms": "132,91", "es": "0,8"}, {"z": 56, "s": "Ba", "n": "Bar", "m": 137.33, "r": false, "e": "0,9", "g": 2, "p": 6, "c": "m", "cf": "[Xe] 6s²", "ms": "137,33", "es": "0,9"}, {"z": 57, "s": "La", "n": "Lantan", "m": 138.91, "r": false, "e": "1,1", "g": 3, "p": 6, "c": "m", "cf": "[Xe] 6s² 5d¹", "ms": "138,91", "es": "1,1"}, {"z": 58, "s": "Ce", "n": "Cer", "m": 140.12, "r": false, "e": null, "g": 4, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹ 5d¹", "ms": "140,12", "es": null}, {"z": 59, "s": "Pr", "n": "Prazeodym", "m": 140.91, "r": false, "e": null, "g": 5, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f³", "ms": "140,91", "es": null}, {"z": 60, "s": "Nd", "n": "Neodym", "m": 144.24, "r": false, "e": null, "g": 6, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁴", "ms": "144,24", "es": null}, {"z": 61, "s": "Pm", "n": "Promet", "m": 144.91, "r": true, "e": null, "g": 7, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁵", "ms": "144,91", "es": null}, {"z": 62, "s": "Sm", "n": "Samar", "m": 150.36, "r": false, "e": null, "g": 8, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁶", "ms": "150,36", "es": null}, {"z": 63, "s": "Eu", "n": "Europ", "m": 151.96, "r": false, "e": null, "g": 9, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁷", "ms": "151,96", "es": null}, {"z": 64, "s": "Gd", "n": "Gadolin", "m": 157.25, "r": false, "e": null, "g": 10, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁷ 5d¹", "ms": "157,25", "es": null}, {"z": 65, "s": "Tb", "n": "Terb", "m": 158.93, "r": false, "e": null, "g": 11, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f⁹", "ms": "158,93", "es": null}, {"z": 66, "s": "Dy", "n": "Dysproz", "m": 162.5, "r": false, "e": null, "g": 12, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹⁰", "ms": "162,50", "es": null}, {"z": 67, "s": "Ho", "n": "Holm", "m": 164.93, "r": false, "e": null, "g": 13, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹¹", "ms": "164,93", "es": null}, {"z": 68, "s": "Er", "n": "Erb", "m": 167.26, "r": false, "e": null, "g": 14, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹²", "ms": "167,26", "es": null}, {"z": 69, "s": "Tm", "n": "Tul", "m": 168.93, "r": false, "e": null, "g": 15, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹³", "ms": "168,93", "es": null}, {"z": 70, "s": "Yb", "n": "Iterb", "m": 173.05, "r": false, "e": null, "g": 16, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹⁴", "ms": "173,05", "es": null}, {"z": 71, "s": "Lu", "n": "Lutet", "m": 174.97, "r": false, "e": null, "g": 17, "p": 9, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹", "ms": "174,97", "es": null}, {"z": 72, "s": "Hf", "n": "Hafn", "m": 178.49, "r": false, "e": "1,3", "g": 4, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d²", "ms": "178,49", "es": "1,3"}, {"z": 73, "s": "Ta", "n": "Tantal", "m": 180.95, "r": false, "e": "1,5", "g": 5, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d³", "ms": "180,95", "es": "1,5"}, {"z": 74, "s": "W", "n": "Wolfram", "m": 183.84, "r": false, "e": "1,7", "g": 6, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d⁴", "ms": "183,84", "es": "1,7"}, {"z": 75, "s": "Re", "n": "Ren", "m": 186.21, "r": false, "e": "1,9", "g": 7, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d⁵", "ms": "186,21", "es": "1,9"}, {"z": 76, "s": "Os", "n": "Osm", "m": 190.23, "r": false, "e": "2,2", "g": 8, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d⁶", "ms": "190,23", "es": "2,2"}, {"z": 77, "s": "Ir", "n": "Iryd", "m": 192.22, "r": false, "e": "2,2", "g": 9, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d⁷", "ms": "192,22", "es": "2,2"}, {"z": 78, "s": "Pt", "n": "Platyna", "m": 195.08, "r": false, "e": "2,2", "g": 10, "p": 6, "c": "m", "cf": "[Xe] 6s¹ 4f¹⁴ 5d⁹", "ms": "195,08", "es": "2,2"}, {"z": 79, "s": "Au", "n": "Złoto", "m": 196.97, "r": false, "e": "2,4", "g": 11, "p": 6, "c": "m", "cf": "[Xe] 6s¹ 4f¹⁴ 5d¹⁰", "ms": "196,97", "es": "2,4"}, {"z": 80, "s": "Hg", "n": "Rtęć", "m": 200.59, "r": false, "e": "1,9", "g": 12, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰", "ms": "200,59", "es": "1,9"}, {"z": 81, "s": "Tl", "n": "Tal", "m": 204.38, "r": false, "e": "1,8", "g": 13, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p¹", "ms": "204,38", "es": "1,8"}, {"z": 82, "s": "Pb", "n": "Ołów", "m": 207.2, "r": false, "e": "1,8", "g": 14, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p²", "ms": "207,2", "es": "1,8"}, {"z": 83, "s": "Bi", "n": "Bizmut", "m": 208.98, "r": false, "e": "1,9", "g": 15, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p³", "ms": "208,98", "es": "1,9"}, {"z": 84, "s": "Po", "n": "Polon", "m": 208.98, "r": true, "e": "2,0", "g": 16, "p": 6, "c": "m", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p⁴", "ms": "208,98", "es": "2,0"}, {"z": 85, "s": "At", "n": "Astat", "m": 209.99, "r": true, "e": "2,2", "g": 17, "p": 6, "c": "pm", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p⁵", "ms": "209,99", "es": "2,2"}, {"z": 86, "s": "Rn", "n": "Radon", "m": 222.02, "r": true, "e": null, "g": 18, "p": 6, "c": "gs", "cf": "[Xe] 6s² 4f¹⁴ 5d¹⁰ 6p⁶", "ms": "222,02", "es": null}, {"z": 87, "s": "Fr", "n": "Frans", "m": 223.02, "r": true, "e": "0,7", "g": 1, "p": 7, "c": "m", "cf": "[Rn] 7s¹", "ms": "223,02", "es": "0,7"}, {"z": 88, "s": "Ra", "n": "Rad", "m": 226.03, "r": true, "e": "0,9", "g": 2, "p": 7, "c": "m", "cf": "[Rn] 7s²", "ms": "226,03", "es": "0,9"}, {"z": 89, "s": "Ac", "n": "Aktyn", "m": 227.03, "r": true, "e": null, "g": 3, "p": 7, "c": "m", "cf": "[Rn] 7s² 6d¹", "ms": "227,03", "es": null}, {"z": 90, "s": "Th", "n": "Tor", "m": 232.04, "r": false, "e": null, "g": 4, "p": 10, "c": "m", "cf": "[Rn] 7s² 6d²", "ms": "232,04", "es": null}, {"z": 91, "s": "Pa", "n": "Protaktyn", "m": 231.04, "r": false, "e": null, "g": 5, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f² 6d¹", "ms": "231,04", "es": null}, {"z": 92, "s": "U", "n": "Uran", "m": 238.03, "r": false, "e": null, "g": 6, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f³ 6d¹", "ms": "238,03", "es": null}, {"z": 93, "s": "Np", "n": "Neptun", "m": 237.05, "r": true, "e": null, "g": 7, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f⁴ 6d¹", "ms": "237,05", "es": null}, {"z": 94, "s": "Pu", "n": "Pluton", "m": 244.06, "r": true, "e": null, "g": 8, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f⁶", "ms": "244,06", "es": null}, {"z": 95, "s": "Am", "n": "Ameryk", "m": 243.06, "r": true, "e": null, "g": 9, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f⁷", "ms": "243,06", "es": null}, {"z": 96, "s": "Cm", "n": "Kiur", "m": 247.07, "r": true, "e": null, "g": 10, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f⁷ 6d¹", "ms": "247,07", "es": null}, {"z": 97, "s": "Bk", "n": "Berkel", "m": 247.07, "r": true, "e": null, "g": 11, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f⁹", "ms": "247,07", "es": null}, {"z": 98, "s": "Cf", "n": "Kaliforn", "m": 251.08, "r": true, "e": null, "g": 12, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹⁰", "ms": "251,08", "es": null}, {"z": 99, "s": "Es", "n": "Einstein", "m": 252.08, "r": true, "e": null, "g": 13, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹¹", "ms": "252,08", "es": null}, {"z": 100, "s": "Fm", "n": "Ferm", "m": 257.1, "r": true, "e": null, "g": 14, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹²", "ms": "257,10", "es": null}, {"z": 101, "s": "Md", "n": "Mendelew", "m": 258.1, "r": true, "e": null, "g": 15, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹³", "ms": "258,10", "es": null}, {"z": 102, "s": "No", "n": "Nobel", "m": 259.1, "r": true, "e": null, "g": 16, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹⁴", "ms": "259,10", "es": null}, {"z": 103, "s": "Lr", "n": "Lorens", "m": 262.11, "r": true, "e": null, "g": 17, "p": 10, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d¹", "ms": "262,11", "es": null}, {"z": 104, "s": "Rf", "n": "Rutherford", "m": 267.12, "r": true, "e": null, "g": 4, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d²", "ms": "267,12", "es": null}, {"z": 105, "s": "Db", "n": "Dubn", "m": 268.13, "r": true, "e": null, "g": 5, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d³", "ms": "268,13", "es": null}, {"z": 106, "s": "Sg", "n": "Seaborg", "m": 271.13, "r": true, "e": null, "g": 6, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d⁴", "ms": "271,13", "es": null}, {"z": 107, "s": "Bh", "n": "Bohr", "m": 272.14, "r": true, "e": null, "g": 7, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d⁵", "ms": "272,14", "es": null}, {"z": 108, "s": "Hs", "n": "Has", "m": 270.13, "r": true, "e": null, "g": 8, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d⁶", "ms": "270,13", "es": null}, {"z": 109, "s": "Mt", "n": "Meitner", "m": 276.15, "r": true, "e": null, "g": 9, "p": 7, "c": "m", "cf": "[Rn] 7s² 5f¹⁴ 6d⁷", "ms": "276,15", "es": null}, {"z": 110, "s": "Ds", "n": "Darmsztadt", "m": 281.16, "r": true, "e": null, "g": 10, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d⁸", "ms": "281,16", "es": null}, {"z": 111, "s": "Rg", "n": "Roentgen", "m": 280.17, "r": true, "e": null, "g": 11, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d⁹", "ms": "280,17", "es": null}, {"z": 112, "s": "Cn", "n": "Kopernik", "m": 285.18, "r": true, "e": null, "g": 12, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰", "ms": "285,18", "es": null}, {"z": 113, "s": "Nh", "n": "Nihon", "m": 284.18, "r": true, "e": null, "g": 13, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p¹", "ms": "284,18", "es": null}, {"z": 114, "s": "Fl", "n": "Flerow", "m": 289.19, "r": true, "e": null, "g": 14, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p²", "ms": "289,19", "es": null}, {"z": 115, "s": "Mc", "n": "Moskow", "m": 288.19, "r": true, "e": null, "g": 15, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p³", "ms": "288,19", "es": null}, {"z": 116, "s": "Lv", "n": "Liwermor", "m": 293.2, "r": true, "e": null, "g": 16, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p⁴", "ms": "293,20", "es": null}, {"z": 117, "s": "Ts", "n": "Tenes", "m": 292.21, "r": true, "e": null, "g": 17, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p⁵", "ms": "292,21", "es": null}, {"z": 118, "s": "Og", "n": "Oganeson", "m": 294.21, "r": true, "e": null, "g": 18, "p": 7, "c": "bp", "cf": "[Rn] 7s² 5f¹⁴ 6d¹⁰ 7p⁶", "ms": "294,21", "es": null}];
+EL.forEach(e=>{e.e=e.es?parseFloat(e.es.replace(",",".")):null});
+function config(z){return EL[z-1].cf}
+function pos2(z){const e=EL[z-1];return[e.g,e.p]}
+function blk(z){const e=EL[z-1];if(e.p>=9)return"f";if(e.z===2||e.g<=2)return"s";if(e.g<=12)return"d";return"p"}
+function period(z){const e=EL[z-1];return e.p===9?6:e.p===10?7:e.p}
+const CAT={m:["Metale","#c7d2fe"],pm:["Półmetale","#fbbf24"],nm:["Niemetale","#fef08a"],gs:["Gazy szlachetne","#d9f99d"],bp:["Brak przyporządkowania","#f8fafc"]};
+const GLABEL={1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9",10:"10",11:"11",12:"12",13:"13",14:"14",15:"15",16:"16",17:"17",18:"18"};
+function ptHTML(){let h=`<div class="ptg">`;
+ for(let g=1;g<=18;g++){const top=g===1||g===18?1:(g===2||g>=13?2:4);h+=`<div class="gl" style="grid-column:${g+1};grid-row:${top}">${g}</div>`}
+ for(let p=1;p<=7;p++)h+=`<div class="pl" style="grid-column:1;grid-row:${p+1+(p===1?0:0)}">${p}</div>`;
+ EL.forEach(e=>{let row=e.p<=7?e.p+1:e.p+2;
+  // grupy nad komórkami: etykiety w wierszach-szczelinach – rząd wiersz 1 = etykieta dla H/He; pozostałe etykiety nakładane wyżej
+  h+=`<button class="pc c-${e.c}" style="grid-column:${e.g+1};grid-row:${row}" data-z="${e.z}" title="${e.n}"><span class="pz">${e.z}</span><b>${e.s}</b><span class="pn">${e.n}</span><span class="pm">${e.r?"["+e.ms+"]":e.ms}</span><span class="pe">${e.es||""}</span></button>`});
+ h+=`<div class="fl" style="grid-column:3;grid-row:11">*</div><div class="fl" style="grid-column:3;grid-row:12">**</div><div style="grid-column:1/20;grid-row:10;height:6px"></div></div>`;
+ h+=`<div class="ptleg">${Object.values(CAT).map(([n,c])=>`<span><i style="background:${c}"></i>${n}</span>`).join("")}<span>komórka: Z · symbol · nazwa · masa atomowa [u] · elektroujemność (Pauling)</span></div><p class="muted" style="font-size:.75rem">Dane wg karty CKE „Wybrane wzory i stałe fizykochemiczne” (2023). [ ] – masa najtrwalszego izotopu. * lantanowce, ** aktynowce.</p>`;return h}
+function elDetails(z){const e=EL[z-1];return`<h3>${e.s} – ${e.n} (Z = ${e.z})</h3><p>Masa atomowa: <b>${e.r?"["+e.ms+"]":e.ms} u</b> (masa molowa ${e.ms} g/mol)${e.r?" – najtrwalszy izotop":""}<br>Elektroujemność (Pauling, karta CKE): <b>${e.es||"brak na karcie CKE"}</b><br>Konfiguracja: <b>${e.cf}</b>${e.z>=104?" <span class='muted'>(przewidywana)</span>":""}<br>Okres: <b>${period(z)}</b> · Grupa: <b>${e.p>=9?"3 (szereg "+(e.p===9?"lantanowców":"aktynowców")+")":e.g}</b> · Blok: <b>${blk(z)}</b> · ${CAT[e.c][0]}</p>`}

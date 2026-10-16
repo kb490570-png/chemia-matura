@@ -61,12 +61,8 @@ $("#yes").onclick=()=>ans(1);$("#no").onclick=()=>ans(0)}
 // THEORY
 R.th=()=>{app.innerHTML=Object.entries(TOPICS).map(([k,v])=>`<details class="card th"><summary><b>${v}</b></summary>${TH[k]}<button onclick="qz=null;go('quiz');setTimeout(()=>{$('#qt').value='${k}'},0)">Ćwicz ten dział →</button></details>`).join("")};
 // PERIODIC TABLE
-function blk(z){const c=config(z);const last=c.trim().split(" ").pop();if(z===2)return"s";return last.match(/[spdf]/)[0]}
-R.pt=()=>{let cells="";EL.forEach(e=>{const[c,r]=pos2(e.z);cells+=`<button class="el ${blk(e.z)}" style="grid-column:${c};grid-row:${r+(r>=9?0:0)}" data-z="${e.z}"><small>${e.z}</small>${e.s}</button>`});
-app.innerHTML=`<div class="card"><h2>Interaktywny układ okresowy</h2><p class="muted">Kliknij pierwiastek. Kolory: <span class="s" style="color:#000;padding:0 4px">s</span> <span class="p" style="color:#000;padding:0 4px">p</span> <span class="d" style="color:#000;padding:0 4px">d</span> <span class="f" style="color:#000;padding:0 4px">f</span></p>
-<div class="ptw"><div id="pt">${cells}<div style="grid-row:8;grid-column:1/19;height:8px"></div></div></div><div id="pi" class="fb">Wybierz pierwiastek…</div></div>`;
-$("#pt").onclick=ev=>{const b=ev.target.closest(".el");if(!b)return;const e=EL[b.dataset.z-1],[c,r]=pos2(e.z);const per=r>=9?r-3:r;
-$("#pi").innerHTML=`<h3>${e.s} – ${e.n} (Z = ${e.z})</h3><p>Masa molowa: <b>${String(e.m).replace(".",",")} g/mol</b><br>Elektroujemność (Pauling): <b>${e.e?String(e.e).replace(".",","):"brak danych"}</b><br>Konfiguracja: <b>${config(e.z)}</b><br>Okres: ${per}${r>=9?"":`, grupa: ${c}`} · blok ${blk(e.z)}</p>`}};
+R.pt=()=>{app.innerHTML=`<div class="card"><h2>Układ okresowy pierwiastków</h2><p class="muted">Dotknij pierwiastka, aby zobaczyć szczegóły. Na iPadzie możesz przybliżać gestem szczypania.</p><div class="ptw">${ptHTML()}</div><div id="pi" class="fb">Wybierz pierwiastek…</div></div>`;
+ app.querySelector(".ptg").onclick=ev=>{const b=ev.target.closest(".pc");if(b)$("#pi").innerHTML=elDetails(+b.dataset.z)}};
 // CALCULATORS
 function molar(f){f=f.replace(/[·*.]/g,"*").replace(/\s/g,"");const parts=f.split("*");let tot=0;const comp={};
 for(let p of parts){let mult=1;const m=p.match(/^(\d+)(.*)$/);if(m){mult=+m[1];p=m[2]}const c=parseF(p);for(const k in c)comp[k]=(comp[k]||0)+c[k]*mult}
