@@ -1,5 +1,6 @@
 // ===== Błędy =====
 function markErr(id,bad){const e=LS.get("errs",{});if(bad)e[id]=Date.now();else delete e[id];LS.set("errs",e)}
+(()=>{const og=LS.get("og",{});let ch=0;for(const k in og)if(!og[k].ai){delete og[k];ch=1}if(ch)LS.set("og",og)})();
 const OPTS=q=>q.cr.reduce((a,c)=>a+c[0],0);
 // ===== Kanwa (Apple Pencil) =====
 const COLORS=["#111827","#1d4ed8","#dc2626","#059669","#9333ea"];
@@ -34,36 +35,71 @@ function makeCanvas(host,key,h=520){
  new ResizeObserver(fit).observe(cv);fit();
  return{png(){const t=document.createElement("canvas");t.width=cv.width;t.height=cv.height;const c=t.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,t.width,t.height);c.drawImage(cv,0,0);return t.toDataURL("image/png")},empty:()=>!strokes.length}}
 // ===== Ocena AI z obrazu (Gemini multimodal) =====
-async function gradeImage(q,png){const cfg=LS.get("ai",{});if(!cfg.key)throw"Brak klucza API – dodaj darmowy klucz Gemini w zakładce 🤖 Korepetytor AI → Ustawienia.";
- if(cfg.prov!=="gemini")throw"Ocena zdjęcia odręcznego wymaga dostawcy Google Gemini (multimodalny). Zmień dostawcę w ustawieniach.";
- const max=OPTS(q),model=cfg.model||"gemini-2.5-flash";
- const prompt=`Jesteś egzaminatorem CKE oceniającym maturę rozszerzoną z chemii. Na obrazie jest odręczne rozwiązanie uczennicy (Mai). Oceń je ŚCIŚLE według kryteriów.\nZadanie: ${q.q}\nRozwiązanie modelowe: ${q.sol}\nKryteria (łącznie ${max} pkt):\n${q.cr.map((c,i)=>`K${i+1} (${c[0]} pkt): ${c[1]}`).join("\n")}\nOdpowiedz po polsku w formacie:\nPunkty: X/${max}\nK1: przyznano/nie przyznano – uzasadnienie\n... (dla każdego kryterium)\nCo poprawić: ...\nJeśli pismo jest nieczytelne, napisz to i oceń tylko czytelne fragmenty. Zwracaj się do Mai w formach żeńskich.`;
- const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":cfg.key},
-  body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt},{inline_data:{mime_type:"image/png",data:png.split(",")[1]}}]}]})});
- const j=await r.json();if(!r.ok)throw(j.error?.message||r.status);return j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||"(brak odpowiedzi)"}
+// ===== Ocena AI (oficjalna) =====
+const gKey=()=>{const c=LS.get("ai",{});return c.gkey||((c.prov||"gemini")==="gemini"?c.key:"")||""};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function keySetup(onDone){if($("#ks"))return;const d=document.createElement("div");d.id="ks";d.style.cssText="position:fixed;inset:0;background:#0b1220;z-index:99;overflow:auto;padding:24px";
+ d.innerHTML=`<div class="card" style="max-width:640px;margin:0 auto"><h2>🔑 Witaj Maja! Jeden krok przed startem</h2><p>Twoje rozwiązania ocenia <b>sztuczna inteligencja Google Gemini</b> według kryteriów CKE – zupełnie <b>za darmo</b>. Potrzebny jest tylko darmowy klucz:</p>
+ <ol style="line-height:1.8"><li>Otwórz <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--acc);font-weight:700">aistudio.google.com/apikey</a> i zaloguj się kontem Google.</li><li>Kliknij <b>„Create API key”</b> (Utwórz klucz API).</li><li>Skopiuj klucz (zaczyna się od <code>AIza…</code>) i wklej poniżej.</li></ol>
+ <input id="ksk" placeholder="Wklej tutaj klucz AIza…" autocomplete="off" style="width:100%;font-size:1.3em;padding:16px;margin:8px 0"><div class="row"><button class="pri" id="kss" style="font-size:1.15em;padding:12px 22px">Zapisz i sprawdź klucz</button><button id="ksl">Później</button></div><p id="ksm" class="muted"></p>
+ <p class="muted">Klucz zapisuje się tylko w tej przeglądarce (localStorage). Darmowy limit Gemini wystarcza na codzienną naukę; przy chwilowym limicie aplikacja sama ponowi próbę.</p></div>`;
+ document.body.appendChild(d);const k=d.querySelector("#ksk");k.value=gKey();k.focus();
+ d.querySelector("#ksl").onclick=()=>{LS.set("ksSkip",1);d.remove()};
+ d.querySelector("#kss").onclick=async()=>{const v=k.value.trim(),m=d.querySelector("#ksm");if(!/^AIza[\w-]{20,}$/.test(v)){m.textContent="⚠️ To nie wygląda na klucz Gemini – powinien zaczynać się od „AIza”.";return}m.textContent="Sprawdzam klucz…";
+  try{const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1",{headers:{"x-goog-api-key":v}});if(r.status===400||r.status===403||r.status===401){m.textContent="⚠️ Google odrzucił ten klucz. Skopiuj go ponownie z aistudio.google.com/apikey.";return}}catch(e){/* offline – zapisz mimo to */}
+  const c=LS.get("ai",{prov:"gemini",key:"",model:""});c.gkey=v;if(!c.key||(c.prov||"gemini")==="gemini"){c.prov="gemini";c.key=v}LS.set("ai",c);m.textContent="✅ Zapisano!";setTimeout(()=>{d.remove();onDone&&onDone()},500)}}
+async function gemini(parts,status){const key=gKey();if(!key)throw{nokey:1};const cfg=LS.get("ai",{});
+ const models=[...new Set([(cfg.prov||"gemini")==="gemini"&&cfg.model?cfg.model:"gemini-2.5-flash","gemini-2.5-flash","gemini-2.0-flash"])];let last="";
+ for(let att=0;att<6;att++){const model=models[Math.min(Math.floor(att/2),models.length-1)];
+  try{const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
+    body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{temperature:0.1,responseMimeType:"application/json"}})});
+   const j=await r.json().catch(()=>({}));
+   if(r.ok){const t=j.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("")||"";if(t)return t;last="pusta odpowiedź modelu"}
+   else{last=j.error?.message||("HTTP "+r.status);if(r.status===400&&/API key/i.test(last)||r.status===401||r.status===403)throw{badkey:1,msg:last};if(r.status===400)throw{msg:last};
+    if(r.status===429||r.status>=500){const rd=(j.error?.details||[]).find(x=>x.retryDelay);let w=rd?parseFloat(rd.retryDelay)*1000:2000*2**att;w=Math.min(w,30000);
+     for(let s=Math.ceil(w/1000);s>0;s--){status&&status(`⏳ Limit/obciążenie Gemini (${r.status}) – ponawiam za ${s} s (próba ${att+2}/6)…`);await sleep(1000)}continue}}}
+  catch(e){if(e.badkey||e.msg&&!e.net)throw e;last="brak połączenia z internetem";status&&status("⏳ Problem z siecią – ponawiam…");await sleep(2000*2**att)}}
+ throw{msg:last||"nieznany błąd"}}
+async function gradeAI(q,png,text,status){const max=q.cr.reduce((a,c)=>a+c[0],0);
+ const prompt=`Jesteś egzaminatorem CKE oceniającym maturę rozszerzoną z chemii (formuła 2023). ${png?"Na obrazie jest odręczne rozwiązanie uczennicy (Mai) – najpierw dokładnie je odczytaj.":""}${text?`\nTekst wpisany przez uczennicę: """${text}"""`:""}
+Oceń ŚCIŚLE według kryteriów CKE; punkt przyznaj tylko, gdy kryterium jest w pełni spełnione w rozwiązaniu uczennicy (nie domyślaj się brakujących kroków; błąd rachunkowy, brak jednostki lub złe zaokrąglenie traktuj jak CKE). Nie oceniaj rozwiązania modelowego – służy tylko jako wzorzec.
+Zadanie: ${q.q}
+Rozwiązanie modelowe: ${q.sol}
+Kryteria (łącznie ${max} pkt):
+${q.cr.map((c,i)=>`K${i+1} (max ${c[0]} pkt): ${c[1]}`).join("\n")}
+Zwróć WYŁĄCZNIE JSON: {"odczyt":"co odczytałeś z kartki (krótko)","kryteria":[{"pkt":liczba 0..max_kryterium,"uzasadnienie":"..."}...dokładnie ${q.cr.length} pozycji w kolejności K1..],"wskazowki":"co poprawić, zwracając się do Mai w formach żeńskich","czytelne":true/false}. Jeśli rozwiązanie jest puste lub nieczytelne, przyznaj 0 i napisz to.`;
+ const parts=[{text:prompt}];if(png)parts.push({inline_data:{mime_type:"image/png",data:png.split(",")[1]}});
+ let raw=await gemini(parts,status),j;try{j=JSON.parse(raw.replace(/^```(json)?|```$/g,"").trim())}catch(e){const m=raw.match(/\{[\s\S]*\}/);try{j=JSON.parse(m[0])}catch(e2){throw{msg:"AI zwróciło nieczytelną odpowiedź – spróbuj ponownie."}}}
+ const per=q.cr.map((c,i)=>{const k=(j.kryteria||[])[i]||{};const p=Math.max(0,Math.min(c[0],Math.round(+k.pkt||0)));return{p,max:c[0],why:k.uzasadnienie||"(brak uzasadnienia)"}});
+ return{pts:per.reduce((a,x)=>a+x.p,0),max,per,read:j.odczyt||"",tips:j.wskazowki||"",legible:j.czytelne!==false,ai:true,d:Date.now()}}
+const errTxt=e=>e&&e.nokey?"Brak klucza Gemini.":e&&e.badkey?"Klucz Gemini jest nieprawidłowy lub zablokowany: "+e.msg:"⚠️ Nie udało się ocenić: "+(e&&e.msg||e)+". Twoje rozwiązanie jest zapisane – kliknij „Sprawdź” ponownie.";
+function gradeHTML(q,g){return`<div class="fb"><div style="padding:8px;border-left:3px solid var(--acc)"><b style="font-size:1.25em">${g.pts}/${g.max} pkt</b> <span class="muted">· oficjalna ocena AI (Gemini) wg kryteriów CKE</span>${g.read?`<p class="muted">📝 Odczytano: ${esc(g.read)}</p>`:""}
+ ${g.per.map((x,i)=>`<p>${x.p===x.max?"✅":x.p?"🟡":"❌"} <b>K${i+1}: ${x.p}/${x.max} pkt</b> – <i>${q.cr[i][1]}</i><br>${esc(x.why)}</p>`).join("")}${g.tips?`<p>💡 <b>Wskazówki:</b> ${esc(g.tips)}</p>`:""}</div><p><b>Rozwiązanie modelowe:</b></p><p>${q.sol}</p></div>`}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+// kolejka – jedna ocena naraz (limity darmowego API)
+let gq=Promise.resolve();const queued=f=>{const p=gq.then(f,f);gq=p.catch(()=>{});return p};
 // ===== Widok zadania otwartego =====
 function openTask(host,q,id,{num,canvasH=520,onScore,hideCheck}={}){
- const max=OPTS(q),saved=LS.get("og",{})[id];
+ const max=OPTS(q);
  host.innerHTML=`<div class="row" style="justify-content:space-between"><span class="muted">${num?num+" · ":""}${TOPICS[q.t]}</span><b>${max} pkt</b></div><h3 style="margin:.4em 0">${q.q}</h3>
- <div class="cvh"></div>${hideCheck?"":`<p><button class="pri chk">Sprawdź – pokaż rozwiązanie i kryteria</button></p>`}<div class="res"></div>`;
- const cvs=makeCanvas(host.querySelector(".cvh"),"cv_"+id,canvasH);
- const show=()=>{const g=LS.get("og",{})[id]||{c:q.cr.map(()=>false)};
-  host.querySelector(".res").innerHTML=`<div class="fb"><b>Rozwiązanie modelowe:</b><p>${q.sol}</p><b>Kryteria oceniania (CKE) – zaznacz spełnione:</b>
-  ${q.cr.map((c,i)=>`<label style="display:flex;gap:8px;align-items:flex-start;margin:6px 0"><input type="checkbox" data-i="${i}" style="width:auto;margin-top:4px" ${g.c[i]?"checked":""}><span><b>${c[0]} pkt</b> – ${c[1]}</span></label>`).join("")}
-  <div class="score" style="margin-top:8px;padding:8px;border-left:3px solid var(--acc)"></div>
-  <p><button class="aib">🤖 Sprawdź AI (zdjęcie kartki → Gemini)</button></p><div class="aio muted" style="white-space:pre-wrap"></div></div>`;
-  const upd=()=>{const c=[...host.querySelectorAll(".res input[type=checkbox]")].map(x=>x.checked);const pts=q.cr.reduce((a,cr,i)=>a+(c[i]?cr[0]:0),0);
-   const og=LS.get("og",{});og[id]={c,pts,max};LS.set("og",og);markErr("o"+id.replace(/^o/,""),pts<max);
-   host.querySelector(".score").innerHTML=`<b style="font-size:1.15em">${pts}/${max} pkt</b><br>`+q.cr.map((cr,i)=>c[i]?`✅ Przyznano ${cr[0]} pkt: ${cr[1]}`:`❌ Nie przyznano ${cr[0]} pkt – w rozwiązaniu brakuje: ${cr[1]}`).join("<br>");onScore&&onScore(pts,max)};
-  host.querySelectorAll(".res input[type=checkbox]").forEach(x=>x.onchange=upd);upd();
-  host.querySelector(".aib").onclick=async()=>{const o=host.querySelector(".aio");if(cvs.empty()){o.textContent="Kartka jest pusta – najpierw napisz rozwiązanie.";return}o.textContent="Wysyłam rysunek do Gemini…";
-   try{const t=await gradeImage(q,cvs.png());o.textContent=t;const m=t.match(/Punkty:\s*(\d+)\s*\/\s*(\d+)/);if(m){o.textContent+=`\n\n➡️ AI przyznało ${m[1]}/${max} pkt. Porównaj z kryteriami i zaznacz pola zgodnie z oceną.`;const og=LS.get("og",{});og[id]={...(og[id]||{c:q.cr.map(()=>false)}),ai:+m[1]};LS.set("og",og)}}catch(e){o.textContent="⚠️ "+e}}};
- if(!hideCheck)host.querySelector(".chk").onclick=e=>{e.target.remove();show()};
- if(saved&&!hideCheck){host.querySelector(".chk")?.remove();show()}
- return{show,cvs}}
+ <div class="cvh"></div><textarea class="otx" rows="2" style="width:100%;margin-top:6px" placeholder="(opcjonalnie) wpisz tu część odpowiedzi z klawiatury – AI oceni ją razem z rysunkiem"></textarea>
+ <p class="chkp" ${hideCheck?'style="display:none"':""}><button class="pri chk">✅ Sprawdź (ocena AI wg CKE)</button></p><div class="st muted"></div><div class="res"></div>`;
+ const cvs=makeCanvas(host.querySelector(".cvh"),"cv_"+id,canvasH),tx=host.querySelector(".otx"),st=host.querySelector(".st"),btn=host.querySelector(".chk");
+ tx.value=LS.get("tx_"+id,"");tx.oninput=()=>LS.set("tx_"+id,tx.value);
+ const render=()=>{const g=LS.get("og",{})[id];if(g&&g.ai&&g.per){host.querySelector(".res").innerHTML=gradeHTML(q,g);btn.textContent="🔁 Sprawdź ponownie (po poprawkach)"}};
+ const grade=()=>{if(!gKey()){keySetup(grade);st.textContent="Dodaj darmowy klucz Gemini, aby AI mogło ocenić rozwiązanie.";return Promise.resolve()}
+  if(cvs.empty()&&!tx.value.trim()){st.textContent="Kartka jest pusta – najpierw napisz rozwiązanie.";return Promise.resolve()}
+  btn.disabled=true;st.textContent="⏳ W kolejce do oceny…";
+  return queued(async()=>{st.textContent="🤖 Gemini czyta Twoje rozwiązanie i ocenia wg kryteriów CKE…";
+   try{const g=await gradeAI(q,cvs.empty()?null:cvs.png(),tx.value.trim(),m=>st.textContent=m);const og=LS.get("og",{});og[id]=g;LS.set("og",og);markErr("o"+id.replace(/^o/,""),g.pts<g.max);st.textContent="";render();onScore&&onScore(g.pts,g.max)}
+   catch(e){st.textContent=errTxt(e);if(e&&e.badkey)keySetup()}finally{btn.disabled=false}})};
+ btn.onclick=grade;render();
+ return{show:()=>{host.querySelector(".chkp").style.display="";const g=LS.get("og",{})[id];if(g&&g.ai)return Promise.resolve();
+  if(cvs.empty()&&!tx.value.trim()){const og=LS.get("og",{});og[id]={pts:0,max,ai:true,per:q.cr.map(c=>({p:0,max:c[0],why:"Brak rozwiązania – kartka pusta."})),read:"",tips:"",d:Date.now()};LS.set("og",og);markErr("o"+id.replace(/^o/,""),true);render();onScore&&onScore(0,max);return Promise.resolve()}
+  return grade()},cvs,grade}}
 // ===== Poziom 100% =====
 R.p100=()=>{const og=LS.get("og",{});let done=0,pts=0,max=0;OQ.forEach((q,i)=>{const g=og["o"+i];if(g){done++;pts+=g.pts;max+=g.max}});
- app.innerHTML=`<div class="card"><h2>🏆 Poziom 100% – zadania otwarte</h2><p>${OQ.length} trudnych zadań otwartych w stylu CKE (łącznie ${OQ.reduce((a,q)=>a+OPTS(q),0)} pkt). Rozwiązuj odręcznie na kartce (Apple Pencil), potem porównaj z rozwiązaniem modelowym i zaznacz spełnione kryteria albo oddaj do oceny AI.</p>
+ app.innerHTML=`<div class="card"><h2>🏆 Poziom 100% – zadania otwarte</h2><p>${OQ.length} trudnych zadań otwartych w stylu CKE (łącznie ${OQ.reduce((a,q)=>a+OPTS(q),0)} pkt). Rozwiązuj odręcznie na kartce (Apple Pencil), i kliknij „Sprawdź” – AI Gemini odczyta Twoje pismo i przyzna punkty wg kryteriów CKE (oficjalny wynik). Rozwiązanie modelowe pojawi się po ocenie.</p>
  <p>Rozwiązane: <b>${done}/${OQ.length}</b>${max?` · wynik: <b>${pts}/${max} pkt (${Math.round(100*pts/max)}%)</b>`:""}</p>
  <label>Dział</label><select id="pt3">${topicOpts()}</select><label>Pokaż</label><select id="pf"><option value="">wszystkie</option><option value="todo">nierozwiązane</option><option value="bad">niepełna punktacja</option></select><div id="pl" style="margin-top:10px"></div></div><div id="ptask"></div>`;
  const list=()=>{const t=$("#pt3").value,f=$("#pf").value,og=LS.get("og",{});
@@ -83,12 +119,12 @@ R.err=()=>{const e=LS.get("errs",{}),ids=Object.keys(e).sort((a,b)=>e[b]-e[a]);
 // ===== Arkusz próbny 180 min =====
 function pick(arr,n){return arr.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(x=>x[1])}
 R.ark=()=>{const a=LS.get("ark",null);
- if(!a){const hist=LS.get("arkHist",[]);app.innerHTML=`<div class="card"><h2>⏱️ Arkusz próbny</h2><p>Symulacja egzaminu: <b>180 minut</b>, ok. 60 pkt – 10 zadań zamkniętych (1 pkt) i zadania otwarte z „Poziomu 100%” z każdego działu. Timer działa także po odświeżeniu strony. Po zakończeniu: automatyczna ocena zamkniętych, samoocena (lub AI) otwartych i wynik w %.</p>
+ if(!a){const hist=LS.get("arkHist",[]);app.innerHTML=`<div class="card"><h2>⏱️ Arkusz próbny</h2><p>Symulacja egzaminu: <b>180 minut</b>, ok. 60 pkt – 10 zadań zamkniętych (1 pkt) i zadania otwarte z „Poziomu 100%” z każdego działu. Timer działa także po odświeżeniu strony. Po zakończeniu: automatyczna ocena zamkniętych, a zadania otwarte (Twoje odręczne rozwiązania) ocenia AI Gemini wg kryteriów CKE – to oficjalny wynik w %.</p>
   <button class="pri" id="as">Rozpocznij arkusz</button>${hist.length?`<h3>Poprzednie arkusze</h3>${hist.map(h=>`<div>${new Date(h.d).toLocaleString("pl-PL")}: <b>${h.p}/${h.m} pkt (${Math.round(100*h.p/h.m)}%)</b></div>`).join("")}`:""}</div>`;
   $("#as").onclick=()=>{const closed=pick(Q.map((q,i)=>i).filter(i=>Q[i].o),10);let open=[],sum=10;
    const byT=Object.keys(TOPICS).map(t=>pick(OQ.map((q,i)=>i).filter(i=>OQ[i].t===t),4));let r=0;
    while(sum<60){const t=byT[r%byT.length];r++;if(!t.length){if(byT.every(x=>!x.length))break;continue}const i=t.shift();open.push(i);sum+=OPTS(OQ[i])}
-   LS.set("ark",{start:Date.now(),closed,open,ans:{},done:false});R.ark()};return}
+   {const og=LS.get("og",{});open.forEach(i=>{delete og["o"+i];localStorage.removeItem("cv_o"+i);localStorage.removeItem("tx_o"+i)});LS.set("og",og)}LS.set("ark",{start:Date.now(),closed,open,ans:{},done:false});R.ark()};return}
  const max=a.closed.length+a.open.reduce((s,i)=>s+OPTS(OQ[i]),0);
  app.innerHTML=`<div class="card" style="position:sticky;top:96px;z-index:4"><div class="row" style="justify-content:space-between"><b id="tm"></b><span id="asc"></span>${a.done?`<button id="anew">Nowy arkusz</button>`:`<button class="pri" id="aend">Zakończ i oceń</button>`}</div></div>
  ${a.closed.map((qi,n)=>{const q=Q[qi];return`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">Zadanie ${n+1} · ${TOPICS[q.t]}</span><b>1 pkt</b></div><h3>${q.q}</h3>${q.o.map((o,k)=>`<label class="opt ${a.done?(k===q.a?"ok":a.ans[qi]===k?"bad":""):""}" style="display:flex;gap:8px"><input type="radio" name="c${qi}" value="${k}" style="width:auto" ${a.ans[qi]===k?"checked":""} ${a.done?"disabled":""}>${o}</label>`).join("")}
@@ -96,14 +132,14 @@ R.ark=()=>{const a=LS.get("ark",null);
  ${a.open.map((oi,n)=>`<div class="card" id="ao${oi}"></div>`).join("")}`;
  a.open.forEach((oi,n)=>{const h=$("#ao"+oi);const t=openTask(h,OQ[oi],"o"+oi,{num:"Zadanie "+(a.closed.length+n+1),canvasH:420,hideCheck:!a.done,onScore:()=>score()});if(a.done)t.show()});
  app.querySelectorAll("input[type=radio]").forEach(r=>r.onchange=()=>{const A=LS.get("ark");A.ans[r.name.slice(1)]=+r.value;LS.set("ark",A)});
- function score(){if(!a.done){$("#asc").textContent=`max ${max} pkt`;return}const og=LS.get("og",{});let p=a.closed.filter(qi=>a.ans[qi]===Q[qi].a).length;a.open.forEach(oi=>p+=(og["o"+oi]?.pts||0));
-  $("#asc").innerHTML=`Wynik: <b>${p}/${max} pkt (${Math.round(100*p/max)}%)</b>`;const A=LS.get("ark");A.p=p;A.m=max;LS.set("ark",A)}
+ function score(){if(!a.done){$("#asc").textContent=`max ${max} pkt`;return}const og=LS.get("og",{});let p=a.closed.filter(qi=>a.ans[qi]===Q[qi].a).length;let pend=0;a.open.forEach(oi=>{const g=og["o"+oi];if(g&&g.ai)p+=g.pts;else pend++});
+  $("#asc").innerHTML=`Wynik: <b>${p}/${max} pkt (${Math.round(100*p/max)}%)</b>${pend?` · ⏳ ocena AI: ${pend} zad.`:""}`;const A=LS.get("ark");A.p=p;A.m=max;LS.set("ark",A)}
  const finish=()=>{const A=LS.get("ark");A.done=true;A.end=Date.now();A.closed.forEach(qi=>markErr("q"+qi,A.ans[qi]!==Q[qi].a));LS.set("ark",A);R.ark();window.scrollTo(0,0)};
  if(!a.done){$("#aend").onclick=()=>{if(confirm("Zakończyć arkusz i przejść do oceny?"))finish()};
   const tick=()=>{if(!document.getElementById("tm"))return clearInterval(iv);const left=Math.max(0,a.start+180*60e3-Date.now());const m=Math.floor(left/60e3),s=Math.floor(left/1e3)%60;
    $("#tm").textContent=`⏱️ ${String(Math.floor(m/60))}:${String(m%60).padStart(2,"0")}:${String(s).padStart(2,"0")}`;$("#tm").style.color=left<10*60e3?"var(--bad)":"";if(!left){clearInterval(iv);alert("Koniec czasu!");finish()}};const iv=setInterval(tick,1000);tick()}
  else{$("#tm").textContent=`✅ Zakończono (czas: ${Math.round((a.end-a.start)/60e3)} min)`;$("#anew").onclick=()=>{const A=LS.get("ark");const h=LS.get("arkHist",[]);h.unshift({d:A.end,p:A.p||0,m:A.m||max});LS.set("arkHist",h.slice(0,20));
-   A.open.forEach(oi=>{localStorage.removeItem("cv_o"+oi);const og=LS.get("og",{});delete og["o"+oi];LS.set("og",og)});localStorage.removeItem("ark");R.ark()}}
+   A.open.forEach(oi=>{localStorage.removeItem("cv_o"+oi);localStorage.removeItem("tx_o"+oi);const og=LS.get("og",{});delete og["o"+oi];LS.set("og",og)});localStorage.removeItem("ark");R.ark()}}
  score()};
 // ===== Teoria rozszerzona + wzory =====
 const thTxt=h=>h.replace(/<[^>]+>/g," ").replace(/\s+/g," ");
@@ -124,6 +160,7 @@ R.wz=()=>{app.innerHTML=`<div class="card wz">${WZORY}</div>`};
 // start: extra info
 const _start=R.start;R.start=()=>{_start();const og=LS.get("og",{}),e=Object.keys(LS.get("errs",{})).length;let p=0,m=0;Object.values(og).forEach(g=>{p+=g.pts;m+=g.max});
  app.insertAdjacentHTML("beforeend",`<div class="card"><h3>🏆 Droga do 100%</h3><p>Zadania otwarte: ${Object.keys(og).length}/${OQ.length}${m?` · ${p}/${m} pkt (${Math.round(100*p/m)}%)`:""} · do poprawy: ${e}</p><div class="row"><button class="pri" onclick="go('p100')">Poziom 100%</button><button onclick="go('ark')">Arkusz próbny</button><button onclick="go('err')">Błędy</button></div></div>`)};
+if(!gKey()&&!LS.get("ksSkip"))setTimeout(()=>keySetup(),300);
 go(VIEWS[location.hash.slice(1)]?location.hash.slice(1):"start");
 
 // ===== Pływające panele: układ okresowy i wzory (nie przerysowują widoku – kanwa i timer zostają) =====
