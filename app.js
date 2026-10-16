@@ -23,15 +23,26 @@ R.quiz=()=>{app.innerHTML=`<div class="card"><h2>Quiz</h2><label>Dział</label><
 $("#qs").onclick=()=>{const t=$("#qt").value,y=$("#qy").value;let pool=Q.filter(q=>(!t||q.t===t)&&(!y||(y==="n")===("n" in q)));
 pool.sort(()=>Math.random()-.5);qz={list:pool.slice(0,+$("#qn").value),i:0,ok:0};showQ()}};
 function stat(t,ok){const s=LS.get("stats",{});s[t]=s[t]||[0,0];s[t][1]++;if(ok)s[t][0]++;LS.set("stats",s)}
-function showQ(){if(qz.i>=qz.list.length){app.innerHTML=`<div class="card"><h2>Koniec! 🎉</h2><p>Wynik: <b>${qz.ok}/${qz.list.length}</b> (${Math.round(100*qz.ok/qz.list.length)}%)</p><button class="pri" onclick="go('quiz')">Nowy quiz</button></div>`;return}
+function showQ(){if(qz.i>=qz.list.length){app.innerHTML=`<div class="card"><h2>Koniec! 🎉</h2><p>Poprawne: <b>${qz.ok}/${qz.list.length}</b><br>Punkty: <b>${qz.pts||0}/${qz.max||0} pkt</b> (${Math.round(100*(qz.pts||0)/(qz.max||1))}%)</p><p class="muted">Zadania zamknięte: 1 pkt; obliczeniowe: 2 pkt (metoda + obliczenia/wynik z jednostką).</p><button class="pri" onclick="go('quiz')">Nowy quiz</button></div>`;return}
 const q=qz.list[qz.i],o=q.o?q.o.map((x,i)=>[x,i]).sort(()=>Math.random()-.5):null;
-app.innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">${TOPICS[q.t]}</span><span class="muted">${qz.i+1}/${qz.list.length} · ✅ ${qz.ok}</span></div>
-<div class="bar"><i style="width:${100*qz.i/qz.list.length}%"></i></div><h3>${q.q}</h3>
-${o?o.map(([x,i])=>`<button class="opt" data-i="${i}">${x}</button>`).join(""):`<div class="row"><input id="na" inputmode="decimal" placeholder="Twój wynik" style="flex:1"><span>${q.u||""}</span><button class="pri" id="nb">Sprawdź</button></div>`}
+app.innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">${TOPICS[q.t]}</span><span class="muted">${qz.i+1}/${qz.list.length} · ${qz.pts||0}/${qz.max||0} pkt</span></div>
+<div class="bar"><i style="width:${100*qz.i/qz.list.length}%"></i></div><h3>${q.q} <span class="muted">(${q.n!==undefined?2:1} pkt)</span></h3>
+${o?o.map(([x,i])=>`<button class="opt" data-i="${i}">${x}</button>`).join(""):`<textarea id="sol" rows="3" style="width:100%;margin-bottom:6px" placeholder="(opcjonalnie) Twój tok rozumowania – do samooceny lub oceny przez AI"></textarea><div class="row"><input id="na" inputmode="decimal" placeholder="Twój wynik" style="flex:1"><span>${q.u||""}</span><button class="pri" id="nb">Sprawdź</button></div>`}
 <div id="fb"></div></div>`;
-const done=ok=>{stat(q.t,ok);if(ok)qz.ok++;$("#fb").innerHTML=`<div class="fb"><b style="color:${ok?"var(--ok)":"var(--bad)"}">${ok?"✅ Dobrze!":"❌ Źle."}</b> ${q.n!==undefined?`Poprawna odpowiedź: <b>${fmt(q.n)} ${q.u||""}</b>`:""}<p>${q.e}</p><button class="pri" id="nx">Dalej →</button></div>`;$("#nx").onclick=()=>{qz.i++;showQ()};$("#nx").focus()};
-if(o)app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if($("#nx"))return;const i=+b.dataset.i;app.querySelectorAll(".opt").forEach(x=>{if(+x.dataset.i===q.a)x.classList.add("ok")});if(i!==q.a)b.classList.add("bad");done(i===q.a)});
-else{const chk=()=>{if($("#nx"))return;const v=num($("#na").value);if(isNaN(v))return;const tol=Math.max(q.tol,Math.abs(q.n)*0.005);done(Math.abs(v-q.n)<=tol+1e-9)};$("#nb").onclick=chk;$("#na").onkeydown=e=>e.key==="Enter"&&chk();$("#na").focus()}}
+const done=(ok,pts,max,why,v)=>{stat(q.t,ok);qz.ok+=ok?1:0;qz.pts=(qz.pts||0)+pts;qz.max=(qz.max||0)+max;
+$("#fb").innerHTML=`<div class="fb"><b style="color:${ok?"var(--ok)":"var(--bad)"}">${ok?"✅ Dobrze!":"❌ Źle."}</b> <span style="float:right;font-weight:700" id="ptsb">${pts}/${max} pkt</span>${q.n!==undefined?`<br>Poprawna odpowiedź: <b>${fmt(q.n)} ${q.u||""}</b>`:""}
+<div style="margin-top:8px;padding:8px;border-left:3px solid var(--acc)"><b>Punktacja wg kryteriów CKE:</b><br><span id="why">${why}</span></div><p><b>Rozwiązanie:</b> ${q.e}</p>
+${q.n!==undefined&&!ok?`<div class="row"><button id="self">Samoocena: moja metoda była poprawna (+1 pkt)</button></div>`:""}
+${q.n!==undefined&&LS.get("ai",{}).key?`<button id="aig">🤖 Oceń mój tok rozumowania z AI</button><div id="aio" class="muted"></div>`:""}
+<button class="pri" id="nx">Dalej →</button></div>`;
+$("#nx").onclick=()=>{qz.i++;showQ()};
+const sb=$("#self");if(sb)sb.onclick=()=>{if(pts<1){pts=1;qz.pts++;$("#ptsb").textContent=`1/${max} pkt`;$("#why").innerHTML+=`<br>🔁 <b>Samoocena:</b> 1 pkt przyznany za zastosowanie poprawnej metody (poprawny tok obliczeń, np. właściwa zależność między danymi a szukaną). 0 pkt za wynik, bo błąd rachunkowy lub zły wynik końcowy.`;sb.remove()}};
+const ab=$("#aig");if(ab)ab.onclick=async()=>{const sol=$("#sol").value.trim();if(!sol){$("#aio").textContent="Najpierw wpisz swój tok rozumowania w polu nad wynikiem.";return}$("#aio").textContent="Oceniam…";
+try{const o=await askAI(`Oceń rozwiązanie zadania maturalnego wg kryteriów CKE (max ${max} pkt: 1 pkt za poprawną metodę – zastosowanie poprawnej metody łączącej dane z szukaną; 1 pkt za poprawne obliczenia i wynik z poprawną jednostką i zaokrągleniem). Na początku podaj „Punkty: X/${max}”, potem uzasadnij każdy przyznany lub nieprzyznany punkt.\nZadanie: ${q.q}\nPoprawny wynik: ${q.n} ${q.u||""}\nRozwiązanie modelowe: ${q.e}\nRozwiązanie ucznia: ${sol}\nWynik ucznia: ${v} ${q.u||""}`,true);$("#aio").style.whiteSpace="pre-wrap";$("#aio").textContent=o;const m=o.match(/Punkty:\s*(\d)/);if(m){qz.pts+=+m[1]-pts;pts=+m[1];$("#ptsb").textContent=`${pts}/${max} pkt (AI)`}}catch(e){$("#aio").textContent="⚠️ "+e}};
+$("#nx").focus()};
+if(o)app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if($("#nx"))return;const i=+b.dataset.i;app.querySelectorAll(".opt").forEach(x=>{if(+x.dataset.i===q.a)x.classList.add("ok")});if(i!==q.a)b.classList.add("bad");const ok=i===q.a;done(ok,ok?1:0,1,ok?`1/1 pkt – wybrano poprawną odpowiedź („${q.o[q.a]}”). W zadaniu zamkniętym punkt przyznaje się wyłącznie za poprawny wybór.`:`0/1 pkt – wybrano „${q.o[i]}”, a poprawna jest „${q.o[q.a]}”. W zadaniu zamkniętym CKE nie przyznaje punktów częściowych.`)});
+else{const chk=()=>{if($("#nx"))return;const v=num($("#na").value);if(isNaN(v))return;const tol=Math.max(q.tol,Math.abs(q.n)*0.005);const ok=Math.abs(v-q.n)<=tol+1e-9,near=!ok&&Math.abs(v-q.n)<=Math.max(tol*5,Math.abs(q.n)*0.03);
+done(ok,ok?2:near?1:0,2,ok?"1 pkt – zastosowanie poprawnej metody (wynik świadczy o poprawnym powiązaniu danych z szukaną).<br>1 pkt – poprawne obliczenia, wynik w dopuszczalnym zakresie"+(q.u?` (jednostka: ${q.u})`:"")+".":near?"1 pkt – metoda poprawna (wynik bliski prawidłowemu).<br>0 pkt – błąd rachunkowy lub niewłaściwe zaokrąglenie: wynik "+fmt(v)+" poza tolerancją (±"+fmt(tol)+")." :"0 pkt za metodę – wynik "+fmt(v)+" wskazuje na błędną metodę lub błąd merytoryczny (np. zła proporcja/wzór).<br>0 pkt za obliczenia – wynik niepoprawny. Jeśli Twoja metoda była dobra, a pomyliłeś się rachunkowo – użyj samooceny poniżej.",v)};$("#nb").onclick=chk;$("#na").onkeydown=e=>e.key==="Enter"&&chk();$("#na").focus()}}
 // FLASHCARDS – Leitner boxes 0..5, interval days
 const IV=[0,1,2,4,8,16];
 R.fc=()=>{app.innerHTML=`<div class="card"><h2>Fiszki (powtórki rozłożone w czasie)</h2><label>Dział</label><select id="ft">${topicOpts()}</select><div id="fa"></div></div>`;$("#ft").onchange=fcNext;fcNext()};
@@ -76,20 +87,20 @@ if(!(x>0)){$("#po").textContent="Podaj poprawne dane";return}
 const p=-Math.log10(x),pH=t[1]==="a"?p:14-p;$("#po").innerHTML=`<b>pH = ${fmt(+pH.toFixed(2))}</b> · pOH = ${fmt(+(14-pH).toFixed(2))}<br><span class="muted">[${t[1]==="a"?"H⁺":"OH⁻"}] = ${x.toExponential(3)} mol/dm³${t[0]==="w"?` · α = ${fmt(100*x/C)}% (dokładne rozwiązanie równania kwadratowego)`:""}</span>`};
 ["#pt2","#pc","#pz","#pk"].forEach(s=>$(s).oninput=ph);ph()};
 // AI TUTOR (opcjonalny, własny darmowy klucz)
-const SYS="Jesteś cierpliwym korepetytorem chemii przygotowującym Kacpra do matury rozszerzonej z chemii (CKE, formuła 2023). Odpowiadaj po polsku, zwięźle, krok po kroku, z poprawnymi wzorami i jednostkami. Gdy rozwiązujesz zadanie obliczeniowe, pokaż tok rozumowania jak w kluczu CKE.";
+const SYS="Jesteś cierpliwym korepetytorem chemii przygotowującym Kacpra do matury rozszerzonej z chemii (CKE, formuła 2023). Odpowiadaj po polsku, zwięźle, krok po kroku, z poprawnymi wzorami i jednostkami. Gdy rozwiązujesz zadanie obliczeniowe, pokaż tok rozumowania jak w kluczu CKE. Gdy uczeń przesyła swoje rozwiązanie lub odpowiedź do oceny, ZAWSZE zacznij od „Punkty: X/Y” (wg zasad CKE: zadania zamknięte 1 pkt, obliczeniowe zwykle 2 pkt – metoda i obliczenia z wynikiem i jednostką) i uzasadnij każdy przyznany lub nieprzyznany punkt.";
 let hist=[];
-async function askAI(text){const cfg=LS.get("ai",{prov:"gemini",key:"",model:""});if(!cfg.key)throw"Najpierw wklej darmowy klucz API w ustawieniach poniżej.";
-hist.push({r:"user",t:text});
+async function askAI(text,once){const cfg=LS.get("ai",{prov:"gemini",key:"",model:""});if(!cfg.key)throw"Najpierw wklej darmowy klucz API w ustawieniach poniżej.";
+const saved=hist;if(once)hist=[];hist.push({r:"user",t:text});try{
 if(cfg.prov==="gemini"){const model=cfg.model||"gemini-2.5-flash";
  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":cfg.key},body:JSON.stringify({systemInstruction:{parts:[{text:SYS}]},contents:hist.map(m=>({role:m.r==="user"?"user":"model",parts:[{text:m.t}]}))})});
  const j=await r.json();if(!r.ok)throw(j.error?.message||r.status);const out=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||"(brak odpowiedzi)";hist.push({r:"ai",t:out});return out}
 const model=cfg.model||"llama-3.3-70b-versatile";
 const r=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+cfg.key},body:JSON.stringify({model,messages:[{role:"system",content:SYS},...hist.map(m=>({role:m.r==="user"?"user":"assistant",content:m.t}))]})});
-const j=await r.json();if(!r.ok)throw(j.error?.message||r.status);const out=j.choices[0].message.content;hist.push({r:"ai",t:out});return out}
+const j=await r.json();if(!r.ok)throw(j.error?.message||r.status);const out=j.choices[0].message.content;hist.push({r:"ai",t:out});return out}finally{if(once)hist=saved}}
 function speak(t){if(!("speechSynthesis"in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/[*#_`]/g,""));u.lang="pl-PL";const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith("pl"));if(v)u.voice=v;speechSynthesis.speak(u)}
 R.ai=()=>{const cfg=LS.get("ai",{prov:"gemini",key:"",model:""});const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 app.innerHTML=`<div class="card"><h2>🤖 Korepetytor AI</h2><p class="muted">Opcjonalnie: działa z Twoim <b>darmowym</b> kluczem (bez karty). Klucz jest zapisany tylko w tej przeglądarce. Głos: darmowe Web Speech API przeglądarki.</p>
-<div id="chat" class="chat"></div><textarea id="ain" rows="3" style="width:100%" placeholder="Zadaj pytanie, np. Wyjaśnij hydrolizę soli"></textarea>
+<div id="chat" class="chat"></div><textarea id="ain" rows="3" style="width:100%" placeholder="Zadaj pytanie albo wklej zadanie + swoje rozwiązanie do oceny (dostaniesz punkty X/Y z uzasadnieniem)"></textarea>
 <div class="row"><button class="pri" id="asend">Wyślij</button>${SR?`<button id="amic">🎤 Mów</button>`:""}<label style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" id="atts" style="width:auto" ${LS.get("tts",false)?"checked":""}> czytaj odpowiedzi na głos</label></div></div>
 <details class="card"><summary><b>⚙️ Ustawienia klucza API</b></summary>
 <label>Dostawca</label><select id="aprov"><option value="gemini">Google Gemini (zalecany, darmowy)</option><option value="groq">Groq (zapasowy, darmowy)</option></select>
