@@ -1,0 +1,1451 @@
+Chemia
+Podstawa programowa w zakresie przedmiotu chemia określa zakres wiadomości
+i umiejętności, które powinien opanować uczeń w toku kształcenia w liceum
+ogólnokształcącym i technikum. Wiadomości i umiejętności zdobywane przez uczniów różnią
+się w zakresie podstawowym i rozszerzonym. Zakres rozszerzony odpowiada na potrzeby
+uczniów planujących podjąć studia na kierunkach przyrodniczych, na których wymagana jest
+znajomość chemii w stopniu wyższym, jak np. chemia, medycyna, farmacja, biotechnologia
+lub pokrewne.
+Podstawa programowa w zakresie przedmiotu chemia w zakresie podstawowym
+i rozszerzonym zostały przygotowane w formie wymagań opisujących oczekiwane
+osiągnięcia ucznia, a użyte w opisie czasowniki operacyjne umożliwiają ich jednoznaczną
+interpretację. Spiralny układ treści kształcenia pozwala na płynne łączenie ze sobą nowych
+treści z treściami znanymi uczniom z poprzedniego etapu edukacyjnego. W liceum
+ogólnokształcącym i technikum szczególnie ważne jest rozwijanie umiejętności naukowego
+myślenia,
+
+w
+
+tym
+
+dostrzegania
+
+związków
+
+i
+
+zależności
+
+przyczynowo-skutkowych,
+
+analizowania, uogólniania i wnioskowania. W związku z tym, że chemia jest przedmiotem
+eksperymentalnym, duży nacisk
+położono na umiejętności związane z projektowaniem i przeprowadzaniem doświadczeń
+chemicznych. Interpretacja wyników doświadczenia i formułowanie wniosków na podstawie
+przeprowadzonych obserwacji ma służyć wykorzystaniu zdobytej wiedzy do identyfikowania
+i rozwiązywania problemów.
+Kształceniu chemicznemu powinno towarzyszyć rozwijanie kompetencji cyfrowych
+niezbędnych do efektywnego korzystania z technologii informacyjno-komunikacyjnych
+w celu oceny, tworzenia, przechowywania, prezentowania i wymiany informacji.
+Opanowanie przez uczniów zawartych w podstawie programowej w zakresie przedmiotu
+chemia
+
+wymagań
+
+w dzisiejszym
+
+szczegółowych
+
+zapewni
+
+im
+
+zdobycie
+
+wszystkich
+
+potrzebnych
+
+– 283 –
+ZAKRES ROZSZERZONY
+Cele kształcenia – wymagania ogólne
+I. Pozyskiwanie, przetwarzanie i tworzenie informacji. Uczeń:
+1)
+
+pozyskuje i przetwarza informacje z różnorodnych źródeł;
+
+2)
+
+korzysta z technologii informacyjno-komunikacyjnych do wyszukiwania, przetwarzania,
+selekcji, agregacji, weryfikacji i wykorzystania danych;
+
+3)
+
+ocenia wiarygodność uzyskanych danych;
+
+4)
+
+konstruuje wykresy, tabele i schematy na podstawie dostępnych informacji.
+II. Rozumowanie i zastosowanie nabytej wiedzy do rozwiązywania problemów. Uczeń:
+
+1)
+
+opisuje właściwości substancji i wyjaśnia przebieg procesów chemicznych;
+
+2)
+
+wskazuje na związek właściwości różnorodnych substancji z ich zastosowaniami i ich
+wpływem na środowisko naturalne;
+
+3)
+
+reaguje w przypadku wystąpienia zagrożenia dla środowiska;
+
+4)
+
+wskazuje na związek między właściwościami substancji a ich budową chemiczną;
+
+5)
+
+wykorzystuje wiedzę i dostępne informacje do rozwiązywania problemów chemicznych
+z zastosowaniem metody naukowej;
+
+6)
+
+stosuje poprawną terminologię;
+
+7)
+
+wykonuje obliczenia dotyczące praw chemicznych.
+III. Opanowanie czynności praktycznych. Uczeń:
+
+1)
+
+bezpiecznie posługuje się sprzętem laboratoryjnym i odczynnikami chemicznymi;
+
+2)
+
+projektuje i przeprowadza doświadczenia chemiczne, rejestruje ich wyniki w różnej
+formie, formułuje obserwacje, wnioski oraz wyjaśnienia;
+
+3)
+
+stosuje elementy metodologii badawczej (określa problem badawczy, formułuje hipotezy
+oraz proponuje sposoby ich weryfikacji);
+
+4)
+
+przestrzega zasad bezpieczeństwa i higieny pracy.
+
+Treści nauczania – wymagania szczegółowe
+I. Atomy, cząsteczki i stechiometria chemiczna. Uczeń:
+1)
+
+stosuje pojęcia: nuklid, izotop, mol i stała Avogadra;
+
+– 284 –
+2)
+
+odczytuje w układzie okresowym masy atomowe pierwiastków i na ich podstawie oblicza
+masę molową związków chemicznych (nieorganicznych i organicznych) o podanych
+wzorach lub nazwach;
+
+3)
+
+stosuje pojęcie masy atomowej (średnia masa atomów danego pierwiastka, z
+uwzględnieniem jego składu izotopowego);
+
+4)
+
+pisze równania naturalnych przemian promieniotwórczych (α, β¯) oraz sztucznych reakcji
+jądrowych;
+
+5)
+
+ustala wzór empiryczny i rzeczywisty związku chemicznego (nieorganicznego i
+organicznego) na podstawie jego składu i masy molowej;
+
+6)
+
+dokonuje interpretacji jakościowej i ilościowej równania reakcji w ujęciu molowym,
+masowym i objętościowym (dla gazów);
+
+7)
+
+wykonuje obliczenia, z uwzględnieniem wydajności reakcji, dotyczące: liczby moli oraz
+mas substratów i produktów (stechiometria wzorów i równań chemicznych), objętości
+gazów
+
+w
+
+warunkach
+
+normalnych,
+
+po
+
+zmieszaniu
+
+substratów
+
+w
+
+stosunku
+
+stechiometrycznym i niestechiometrycznym;
+8)
+
+stosuje do obliczeń równanie Clapeyrona.
+II. Budowa atomu. Uczeń:
+
+1)
+
+interpretuje wartości liczb kwantowych; opisuje stan elektronu w atomie za pomocą liczb
+kwantowych; stosuje pojęcia: powłoka, podpowłoka, stan orbitalny, spin elektronu;
+
+2)
+
+stosuje
+
+zasady
+
+rozmieszczania
+
+elektronów
+
+na
+
+orbitalach
+
+(zakaz
+
+Pauliego
+
+i regułę Hunda) w atomach pierwiastków wieloelektronowych;
+3)
+
+pisze konfiguracje elektronowe atomów pierwiastków do Z=38 oraz ich jonów o podanym
+ładunku, uwzględniając przynależność elektronów do podpowłok (zapisy konfiguracji:
+pełne, skrócone i schematy klatkowe);
+
+4)
+
+określa przynależność pierwiastków do bloków konfiguracyjnych: s, p i d układu
+okresowego na podstawie konfiguracji elektronowej; wskazuje związek między budową
+elektronową atomu a położeniem pierwiastka w układzie okresowym i jego
+właściwościami fizycznymi (promieniem atomowym, energią jonizacji) i chemicznymi.
+III. Wiązania chemiczne. Oddziaływania międzycząsteczkowe. Uczeń:
+
+1)
+
+określa rodzaj wiązania: jonowe, kowalencyjne (w tym koordynacyjne), metaliczne; na
+podstawie
+
+elektroujemności
+
+kowalencyjnego;
+
+według
+
+Paulinga
+
+określa
+
+polaryzację
+
+wiązania
+
+– 285 –
+2)
+
+pisze wzory elektronowe typowych cząsteczek związków kowalencyjnych i jonów
+złożonych, z uwzględnieniem wolnych par elektronowych;
+
+3)
+
+wyjaśnia tworzenie orbitali zhybrydyzowanych zgodnie z modelem hybrydyzacji, opisuje
+ich wzajemne ułożenie w przestrzeni;
+
+4)
+
+rozpoznaje typ hybrydyzacji (sp, sp2, sp3) orbitali walencyjnych atomu centralnego w
+cząsteczkach
+
+związków
+
+nieorganicznych
+
+i
+
+organicznych;
+
+przewiduje
+
+budowę
+
+przestrzenną drobin metodą VSEPR; określa kształt drobin (struktura digonalna,
+trygonalna, tetraedryczna, piramidalna, V-kształtna);
+5)
+
+określa typ wiązania (σ i π) w cząsteczkach związków nieorganicznych i organicznych;
+
+6)
+
+opisuje i przewiduje wpływ rodzaju wiązania (jonowe, kowalencyjne, metaliczne),
+oddziaływań międzycząsteczkowych (siły van der Waalsa, wiązania wodorowe) oraz
+kształtu drobin na właściwości fizyczne substancji nieorganicznych i organicznych;
+wskazuje te cząsteczki i fragmenty cząsteczek, które są polarne, oraz te, które są
+niepolarne;
+
+7)
+
+porównuje właściwości fizyczne substancji tworzących kryształy jonowe, kowalencyjne,
+molekularne oraz metaliczne;
+
+8)
+
+wyjaśnia pojęcie alotropii pierwiastków; na podstawie znajomości budowy diamentu,
+grafitu, grafenu i fullerenów tłumaczy ich właściwości i zastosowania.
+IV. Kinetyka i statyka chemiczna. Energetyka reakcji chemicznych. Uczeń:
+
+1)
+
+definiuje i oblicza szybkość reakcji (jako zmianę stężenia reagenta w czasie);
+
+2)
+
+przewiduje wpływ: stężenia (ciśnienia) substratów, obecności katalizatora, stopnia
+rozdrobnienia substratów i temperatury na szybkość reakcji; projektuje i przeprowadza
+odpowiednie doświadczenia;
+
+3)
+
+na podstawie równania kinetycznego określa rząd reakcji względem każdego substratu;
+na podstawie danych doświadczalnych ilustrujących związek między stężeniem substratu
+a szybkością reakcji określa rząd reakcji i pisze równanie kinetyczne;
+
+4)
+
+stosuje pojęcia: egzoenergetyczny, endoenergetyczny, energia aktywacji do opisu efektów
+energetycznych przemian; zaznacza wartość energii aktywacji na schemacie ilustrującym
+zmiany energii w reakcji egzo- i endoenergetycznej;
+
+5)
+
+porównuje wartość energii aktywacji przebiegającej z udziałem i bez udziału katalizatora;
+
+6)
+
+wykazuje się znajomością i rozumieniem pojęć: stan równowagi dynamicznej i stała
+równowagi; pisze wyrażenie na stałą równowagi danej reakcji;
+
+– 286 –
+7)
+
+oblicza wartość stałej równowagi reakcji odwracalnej; oblicza stężenia równowagowe
+albo stężenia początkowe reagentów;
+
+8)
+
+wymienia czynniki, które wpływają na stan równowagi reakcji; wyjaśnia, dlaczego
+obecność katalizatora nie wpływa na wydajność przemiany; stosuje regułę Le ChatelieraBrauna (regułę przekory) do jakościowego określenia wpływu zmian temperatury,
+stężenia reagentów i ciśnienia na układ pozostający w stanie równowagi dynamicznej;
+
+9)
+
+stosuje pojęcie standardowej entalpii przemiany; interpretuje zapis ΔH < 0 i ΔH > 0;
+określa efekt energetyczny reakcji chemicznej na podstawie wartości entalpii.
+V. Roztwory. Uczeń:
+
+1)
+
+rozróżnia układy homogeniczne i heterogeniczne; opisuje tworzenie się emulsji;
+
+2)
+
+wykonuje obliczenia związane z przygotowaniem, rozcieńczaniem i zatężaniem
+roztworów
+
+z
+
+zastosowaniem
+
+pojęć:
+
+stężenie
+
+procentowe
+
+lub
+
+molowe
+
+oraz
+
+rozpuszczalność;
+3)
+
+projektuje i przeprowadza doświadczenie pozwalające otrzymać roztwór o określonym
+stężeniu procentowym lub molowym;
+
+4)
+
+opisuje sposoby rozdzielenia roztworów właściwych (ciał stałych w cieczach, cieczy w
+cieczach) na składniki (m.in. ekstrakcja, chromatografia, elektroforeza);
+
+5)
+
+projektuje
+
+i
+
+przeprowadza
+
+doświadczenie
+
+pozwalające
+
+rozdzielić
+
+mieszaninę
+
+niejednorodną (ciał stałych w cieczach) na składniki.
+VI. Reakcje w roztworach wodnych. Uczeń:
+1)
+
+pisze równania dysocjacji elektrolitycznej związków nieorganicznych i organicznych, z
+uwzględnieniem dysocjacji stopniowej;
+
+2)
+
+stosuje termin stopień dysocjacji dla ilościowego opisu zjawiska dysocjacji
+elektrolitycznej;
+
+3)
+
+interpretuje wartości pKw, pH, Ka, Kb, Ks;
+
+4)
+
+wykonuje obliczenia z zastosowaniem pojęć: stała dysocjacji, stopień dysocjacji, pH,
+iloczyn jonowy wody, iloczyn rozpuszczalności; stosuje do obliczeń prawo rozcieńczeń
+Ostwalda;
+
+5)
+
+porównuje moc elektrolitów na podstawie wartości ich stałych dysocjacji;
+
+6)
+
+przewiduje odczyn roztworu po reakcji substancji zmieszanych w ilościach
+stechiometrycznych i niestechiometrycznych;
+
+– 287 –
+7)
+
+klasyfikuje substancje jako kwasy lub zasady zgodnie z teorią Brønsteda-Lowry’ego;
+wskazuje sprzężone pary kwas – zasada;
+
+8)
+
+uzasadnia przyczynę kwasowego odczynu wodnych roztworów kwasów, zasadowego
+odczynu wodnych roztworów niektórych wodorotlenków (zasad) i amoniaku oraz
+odczynu niektórych wodnych roztworów soli zgodnie z teorią Brønsteda-Lowry’ego;
+pisze odpowiednie równania reakcji;
+
+9)
+
+pisze równania reakcji: zobojętniania, wytrącania osadów i wybranych soli z wodą w
+formie jonowej pełnej i skróconej.
+VII. Systematyka związków nieorganicznych. Uczeń:
+
+1)
+
+na podstawie wzoru sumarycznego, opisu budowy lub właściwości fizykochemicznych
+klasyfikuje dany związek chemiczny do: tlenków, wodorków, wodorotlenków, kwasów,
+soli (w tym wodoro- i hydroksosoli, hydratów);
+
+2)
+
+na podstawie wzoru sumarycznego związku nieorganicznego pisze jego nazwę, na
+podstawie nazwy pisze jego wzór sumaryczny;
+
+3)
+
+pisze równania reakcji otrzymywania tlenków pierwiastków o liczbach atomowych od 1
+do 30 (synteza pierwiastków z tlenem, rozkład soli, np. CaCO3, i wodorotlenków, np.
+Cu(OH)2);
+
+4)
+
+opisuje typowe właściwości chemiczne tlenków pierwiastków o liczbach atomowych od
+1 do 20 oraz Cr, Cu, Zn, Mn i Fe, w tym zachowanie wobec wody, kwasów i zasad; pisze
+odpowiednie równania reakcji w formie cząsteczkowej i jonowej;
+
+5)
+
+klasyfikuje tlenki ze względu na ich charakter chemiczny (kwasowy, zasadowy,
+amfoteryczny i obojętny); projektuje i przeprowadza doświadczenie, którego przebieg
+pozwoli wykazać charakter chemiczny tlenku; wnioskuje o charakterze chemicznym
+tlenku na podstawie wyników doświadczenia;
+
+6)
+
+klasyfikuje wodorki: LiH, CH4, NH3, H2O, HF, H2S, HCl, HBr, HI, ze względu na ich
+charakter chemiczny (kwasowy, zasadowy i obojętny); projektuje i przeprowadza
+doświadczenie, którego przebieg pozwoli wykazać charakter chemiczny wodorku;
+wnioskuje o charakterze chemicznym wodorku na podstawie wyników doświadczenia;
+pisze odpowiednie równania reakcji potwierdzające charakter chemiczny wodorków;
+
+7)
+
+projektuje i przeprowadza doświadczenia pozwalające otrzymać różnymi metodami:
+wodorotlenki, kwasy i sole; pisze odpowiednie równania reakcji;
+
+8)
+
+projektuje i przeprowadza doświadczenie, którego przebieg pozwoli wykazać charakter
+chemiczny wodorotlenku (zasadowy, amfoteryczny); wnioskuje o charakterze
+
+– 288 –
+chemicznym wodorotlenku na podstawie wyników doświadczenia; pisze odpowiednie
+równania reakcji potwierdzające charakter chemiczny wodorotlenków (w tym równania
+reakcji otrzymywania hydroksokompleksów);
+9)
+
+opisuje typowe właściwości chemiczne kwasów, w tym zachowanie wobec metali,
+tlenków metali, wodorotlenków i soli kwasów o mniejszej mocy; projektuje i
+przeprowadza odpowiednie doświadczenia; pisze odpowiednie równania reakcji;
+
+10) klasyfikuje poznane kwasy ze względu na ich skład (kwasy tlenowe i beztlenowe), moc i
+właściwości utleniające;
+11) przewiduje przebieg reakcji soli z mocnymi kwasami (wypieranie kwasów słabszych,
+nietrwałych, lotnych) oraz soli z zasadami; pisze odpowiednie równania reakcji.
+VIII. Reakcje utleniania i redukcji. Uczeń:
+1)
+
+stosuje pojęcia: stopień utlenienia, utleniacz, reduktor, utlenianie, redukcja;
+
+2)
+
+wskazuje utleniacz, reduktor, proces utleniania i redukcji w podanej reakcji;
+
+3)
+
+na podstawie konfiguracji elektronowej atomów przewiduje typowe stopnie utlenienia
+pierwiastków;
+
+4)
+
+oblicza stopnie utlenienia pierwiastków w jonie i cząsteczce związku nieorganicznego i
+organicznego;
+
+5)
+
+stosuje zasady bilansu elektronowo-jonowego – dobiera współczynniki stechiometryczne
+w schematach reakcji utleniania-redukcji (w formie cząsteczkowej i jonowej);
+
+6)
+
+przewiduje kierunek przebiegu reakcji utleniania-redukcji na podstawie wartości
+potencjałów standardowych półogniw; pisze odpowiednie równania reakcji.
+IX. Elektrochemia. Ogniwa. Uczeń:
+
+1)
+
+stosuje pojęcia: półogniwo, anoda, katoda, ogniwo galwaniczne, klucz elektrolityczny;
+potencjał standardowy półogniwa, szereg elektrochemiczny, SEM;
+
+2)
+
+pisze oraz rysuje schemat ogniwa odwracalnego i nieodwracalnego;
+
+3)
+
+pisze równania reakcji zachodzące na elektrodach (na katodzie i anodzie) ogniwa
+galwanicznego o danym schemacie; projektuje ogniwo, w którym zachodzi dana reakcja
+chemiczna; pisze schemat tego ogniwa;
+
+4)
+
+oblicza SEM ogniwa galwanicznego na podstawie standardowych potencjałów półogniw,
+z których jest ono zbudowane;
+
+5)
+
+wyszukuje, porządkuje, porównuje i prezentuje informacje:
+
+– 289 –
+a)
+
+o przebiegu korozji elektrochemicznej stali i żeliwa oraz o sposobach ochrony metali
+przed korozją elektrochemiczną;
+
+b)
+
+na temat współczesnych źródeł prądu stałego.
+
+X. Metale, niemetale i ich związki. Uczeń:
+1)
+
+opisuje podobieństwa we właściwościach pierwiastków w grupach układu okresowego i
+zmienność właściwości w okresach;
+
+2)
+
+opisuje podstawowe właściwości fizyczne metali i wyjaśnia je na podstawie znajomości
+natury wiązania metalicznego;
+
+3)
+
+analizuje i porównuje właściwości fizyczne i chemiczne metali grup 1. i 2.;
+
+4)
+
+opisuje właściwości fizyczne i chemiczne glinu; wyjaśnia, na czym polega pasywacja
+glinu; tłumaczy znaczenie tego zjawiska w zastosowaniu glinu w technice;
+
+5)
+
+pisze równania reakcji ilustrujące typowe właściwości chemiczne metali wobec: wody
+(dla Na, K, Mg, Ca), kwasów nieutleniających (dla Na, K, Ca, Mg, Al, Zn, Fe, Mn, Cr),
+przewiduje i opisuje przebieg reakcji rozcieńczonego i stężonego kwasu azotowego(V) z
+Al, Fe, Cu, Ag;
+
+6)
+
+przewiduje produkty redukcji jonów manganianowych(VII) w zależności od środowiska,
+a także jonów dichromianowych(VI) w środowisku kwasowym; pisze odpowiednie
+równania reakcji;
+
+7)
+
+projektuje i przeprowadza doświadczenia, w wyniku których można otrzymać wodór
+(reakcje aktywnych metali z wodą lub niektórych metali z niektórymi kwasami), pisze
+odpowiednie równania reakcji;
+
+8)
+
+projektuje i obserwuje przebieg doświadczenia pozwalającego otrzymać w laboratorium:
+tlen (np. reakcja rozkładu H2O2 lub KMnO4), chlor (np. reakcja HCl z MnO2 lub z
+KMnO4); pisze odpowiednie równania reakcji;
+
+9)
+
+pisze równania reakcji ilustrujące typowe właściwości chemiczne niemetali, w tym m.in.
+równania reakcji: wodoru z niemetalami (Cl2, Br2, O2, N2, S), chloru, bromu i siarki z
+metalami (Na, K, Mg, Ca, Fe, Cu);
+
+10) analizuje i porównuje właściwości fizyczne i chemiczne fluorowców.
+XI. Zastosowania wybranych związków nieorganicznych. Uczeń:
+1)
+
+bada i opisuje właściwości tlenku krzemu(IV); wyszukuje, porządkuje, porównuje i
+prezentuje informacje o odmianach tlenku krzemu(IV) występujących w przyrodzie i ich
+zastosowaniach;
+
+– 290 –
+2)
+
+wyszukuje, porządkuje, porównuje i prezentuje informacje o procesie produkcji szkła;
+jego rodzajach, właściwościach i zastosowaniach;
+
+3)
+
+wyszukuje, porządkuje, porównuje i prezentuje informacje o właściwościach i
+zastosowaniach skał wapiennych (wapień, marmur, kreda); projektuje i przeprowadza
+doświadczenie, którego celem będzie odróżnienie skał wapiennych od innych skał i
+minerałów; pisze odpowiednie równania reakcji;
+
+4)
+
+opisuje mechanizm usuwania twardości przemijającej wody; pisze odpowiednie równania
+reakcji;
+
+5)
+
+pisze wzory hydratów i soli bezwodnych (CaSO4, (CaSO4)2·H2O i CaSO4·2H2O); opisuje
+różnice we właściwościach hydratów i substancji bezwodnych; przewiduje zachowanie
+się hydratów podczas ogrzewania i weryfikuje swoje przewidywania doświadczalnie;
+wyjaśnia proces twardnienia zaprawy gipsowej; pisze odpowiednie równanie reakcji;
+wyszukuje, porządkuje, porównuje i prezentuje informacje o właściwościach i
+zastosowaniach skał gipsowych;
+
+6)
+
+wyszukuje i prezentuje informacje na temat składu nawozów naturalnych i sztucznych
+oraz klasyfikuje je pod kątem zawartości pierwiastków.
+XII. Wstęp do chemii organicznej. Uczeń:
+
+1)
+
+na podstawie wzoru sumarycznego, półstrukturalnego (grupowego), opisu budowy lub
+właściwości fizykochemicznych klasyfikuje dany związek chemiczny do: węglowodorów
+(nasyconych, nienasyconych, cyklicznych, aromatycznych), związków jednofunkcyjnych
+(fluorowcopochodnych, alkoholi, fenoli, aldehydów, ketonów, kwasów karboksylowych,
+estrów, amin, amidów), związków wielofunkcyjnych (hydroksykwasów, aminokwasów,
+peptydów, białek, cukrów); na podstawie wzorów strukturalnych lub półstrukturalnych
+(grupowych) podaje nazwy systematyczne związków zawierających w szkielecie do 8
+atomów węgla:
+
+węglowodorów,
+
+jednofunkcyjnych
+
+pochodnych
+
+węglowodorów
+
+(fluorowcopochodnych, alkoholi, fenoli, aldehydów, ketonów, kwasów karboksylowych,
+estrów); na podstawie nazw systematycznych rysuje ich wzory strukturalne i
+półstrukturalne (grupowe);
+2)
+
+stosuje pojęcia: homolog, szereg homologiczny, wzór ogólny, rzędowość w związkach
+organicznych, izomeria konstytucyjna (szkieletowa, położenia, grup funkcyjnych),
+stereoizomeria (izomeria geometryczna, izomeria optyczna); rozpoznaje i klasyfikuje
+izomery;
+
+– 291 –
+3)
+
+rysuje wzory strukturalne i półstrukturalne (grupowe) izomerów konstytucyjnych o
+podanym wzorze sumarycznym; wśród podanych wzorów węglowodorów i ich
+pochodnych wskazuje izomery konstytucyjne;
+
+4)
+
+wyjaśnia zjawisko izomerii geometrycznej (cis-trans); uzasadnia warunki wystąpienia
+izomerii geometrycznej w cząsteczce związku o podanej nazwie lub o podanym wzorze
+strukturalnym (lub półstrukturalnym); rysuje wzory izomerów geometrycznych;
+
+5)
+
+wyjaśnia zjawisko izomerii optycznej; wskazuje centrum stereogeniczne (asymetryczny
+atom węgla); rysuje wzory w projekcji Fischera izomerów optycznych: enancjomerów i
+diastereoizomerów; uzasadnia warunki wystąpienia izomerii optycznej w cząsteczce
+związku o podanej nazwie lub o podanym wzorze; ocenia, czy cząsteczka o podanym
+wzorze stereochemicznym jest chiralna;
+
+6)
+
+analizuje zmiany właściwości fizycznych (np. temperatura topnienia, temperatura
+wrzenia, rozpuszczalność w wodzie) w szeregach homologicznych oraz analizuje i
+porównuje właściwości różnych izomerów konstytucyjnych; porównuje właściwości
+stereoizomerów (enancjomerów i diastereoizomerów);
+
+7)
+
+klasyfikuje reakcje związków organicznych ze względu na typ procesu (addycja,
+eliminacja, substytucja, polimeryzacja, kondensacja) i mechanizm reakcji (elektrofilowy,
+nukleofilowy, rodnikowy); wyjaśnia mechanizmy reakcji; pisze odpowiednie równania
+reakcji.
+XIII. Węglowodory. Uczeń:
+
+1)
+
+ustala rzędowość atomów węgla w cząsteczce węglowodoru;
+
+2)
+
+opisuje właściwości chemiczne alkanów na przykładzie reakcji: spalania, substytucji
+atomu (lub atomów) wodoru przez atom (lub atomy) chloru albo bromu przy udziale
+światła; pisze odpowiednie równania reakcji;
+
+3)
+
+opisuje właściwości chemiczne alkenów na przykładzie reakcji: spalania, addycji: H2, Cl2
+i Br2, HCl i HBr, H2O, polimeryzacji; przewiduje produkty reakcji przyłączenia
+cząsteczek niesymetrycznych do niesymetrycznych alkenów na podstawie reguły
+Markownikowa (produkty główne i uboczne); opisuje zachowanie alkenów wobec
+wodnego roztworu manganianu(VII) potasu; pisze odpowiednie równania reakcji;
+
+4)
+
+planuje ciąg przemian pozwalających otrzymać np. alken z alkanu (z udziałem
+fluorowcopochodnych węglowodorów); pisze odpowiednie równania reakcji;
+
+5)
+
+opisuje właściwości chemiczne alkinów na przykładzie reakcji spalania, addycji: H2, Cl2
+i Br2, HCl, i HBr, H2O; pisze odpowiednie równania reakcji;
+
+– 292 –
+6)
+
+ustala wzór monomeru, z którego został otrzymany polimer o podanej strukturze; rysuje
+wzór polimeru powstającego z monomeru o podanym wzorze lub nazwie; pisze
+odpowiednie równania reakcji;
+
+7)
+
+wyszukuje, porządkuje i prezentuje informacje o tworzywach; wskazuje na zagrożenia
+związane z gazami powstającymi w wyniku ich spalania;
+
+8)
+
+opisuje budowę cząsteczki benzenu, z uwzględnieniem delokalizacji elektronów;
+wyjaśnia, dlaczego benzen, w przeciwieństwie do alkenów i alkinów, nie odbarwia wody
+bromowej ani wodnego roztworu manganianu(VII) potasu;
+
+9)
+
+opisuje właściwości chemiczne benzenu i toluenu (metylobenzenu) na przykładzie
+reakcji: spalania, z Cl2 lub Br2 wobec katalizatora albo w obecności światła, nitrowania;
+pisze równania reakcji chlorowcowania i nitrowania pochodnych benzenu, uwzględniając
+wpływ kierujący podstawników (atom chlorowca, grupa alkilowa, grupa nitrowa, grupa
+hydroksylowa, grupa karboksylowa);
+
+10) projektuje doświadczenia pozwalające na wskazanie różnic we właściwościach
+chemicznych węglowodorów nasyconych, nienasyconych i aromatycznych; na podstawie
+wyników przeprowadzonych doświadczeń wnioskuje o rodzaju węglowodoru; pisze
+odpowiednie równania reakcji;
+11) wyszukuje, porządkuje, porównuje i prezentuje informacje na temat destylacji ropy
+naftowej i pirolizy węgla kamiennego; wymienia nazwy produktów tych procesów i ich
+zastosowania;
+12) wyjaśnia pojęcie liczby oktanowej (LO) i podaje sposoby zwiększania LO benzyny;
+tłumaczy, na czym polega kraking oraz reforming.
+XIV. Hydroksylowe pochodne węglowodorów − alkohole i fenole. Uczeń:
+1)
+
+porównuje budowę cząsteczek alkoholi i fenoli; wskazuje wzory alkoholi pierwszo-,
+drugo-, i trzeciorzędowych;
+
+2)
+
+opisuje właściwości chemiczne alkoholi na przykładzie reakcji: spalania, z HCl i HBr,
+zachowania wobec sodu, utlenienia do związków karbonylowych, eliminacji wody,
+reakcji z nieorganicznymi kwasami tlenowymi i kwasami karboksylowymi; pisze
+odpowiednie równania reakcji;
+
+3)
+
+porównuje właściwości fizyczne i chemiczne alkoholi mono- i polihydroksylowych
+(etanolu (alkoholu etylowego), etano-1,2-diolu (glikolu etylenowego), propano-1,2-diolu
+(glikolu propylenowego) i propano-1,2,3-triolu (glicerolu)); projektuje i przeprowadza
+doświadczenie, którego przebieg pozwoli odróżnić alkohol monohydroksylowy od
+
+– 293 –
+alkoholu polihydroksylowego; na podstawie obserwacji wyników doświadczenia
+klasyfikuje alkohol do mono- lub polihydroksylowych;
+4)
+
+opisuje zachowanie: alkoholi pierwszo-, drugo- i trzeciorzędowych wobec utleniaczy (np.
+CuO lub K2Cr2O7/H2SO4); projektuje i przeprowadza doświadczenie, którego przebieg
+pozwoli odróżnić alkohol trzeciorzędowy od alkoholu pierwszo- i drugorzędowego; pisze
+odpowiednie równania reakcji;
+
+5)
+
+pisze równanie reakcji manganianu(VII) potasu (w środowisku kwasowym) z alkoholem
+(np. z etanolem, etano-1,2-diolem);
+
+6)
+
+opisuje właściwości chemiczne fenoli na podstawie reakcji z: sodem, wodorotlenkiem
+sodu, bromem, kwasem azotowym(V); pisze odpowiednie równania reakcji dla fenolu
+(benzenolu, hydroksybenzenu) i jego pochodnych; na podstawie wyników doświadczenia
+(reakcji kwasowo-zasadowych lub reakcji z FeCl3) klasyfikuje substancję do alkoholi lub
+fenoli;
+
+7)
+
+na podstawie obserwacji doświadczeń formułuje wniosek dotyczący kwasowego
+charakteru fenolu; projektuje i przeprowadza doświadczenie, które umożliwi porównanie
+mocy kwasów, np. fenolu i kwasu węglowego; pisze odpowiednie równania reakcji;
+
+8)
+
+planuje ciągi przemian pozwalających otrzymać alkohol lub fenol z odpowiedniego
+węglowodoru; pisze odpowiednie równania reakcji;
+
+9)
+
+wyszukuje,
+
+porządkuje
+
+i
+
+prezentuje
+
+informacje
+
+o
+
+metodach
+
+otrzymywania,
+
+właściwościach fizycznych i chemicznych oraz zastosowaniach alkoholi i fenoli.
+XV. Związki karbonylowe − aldehydy i ketony. Uczeń:
+1)
+
+opisuje podobieństwa i różnice w budowie cząsteczek aldehydów i ketonów (położenie
+grupy karbonylowej);
+
+2)
+
+projektuje i przeprowadza doświadczenie, którego przebieg pozwoli odróżnić aldehyd od
+ketonu; na podstawie wyników doświadczenia klasyfikuje substancję do aldehydów lub
+ketonów; pisze odpowiednie równania reakcji aldehydu z odczynnikiem Tollensa i
+odczynnikiem Trommera;
+
+3)
+
+wyszukuje,
+
+porządkuje
+
+i
+
+prezentuje
+
+informacje
+
+o
+
+metodach
+
+otrzymywania,
+
+właściwościach i zastosowaniach aldehydów i ketonów.
+XVI. Kwasy karboksylowe. Uczeń:
+1)
+
+wskazuje grupę karboksylową i resztę kwasową we wzorach kwasów karboksylowych
+(alifatycznych i aromatycznych);
+
+– 294 –
+2)
+
+pisze równania reakcji otrzymywania kwasów karboksylowych (np. z alkoholi lub z
+aldehydów);
+
+3)
+
+pisze równania dysocjacji elektrolitycznej rozpuszczalnych w wodzie kwasów
+karboksylowych i nazywa powstające w tych reakcjach jony;
+
+4)
+
+opisuje właściwości chemiczne kwasów karboksylowych na podstawie reakcji tworzenia:
+soli, estrów, amidów; pisze odpowiednie równania reakcji; projektuje i przeprowadza
+doświadczenia pozwalające otrzymywać sole kwasów karboksylowych (w reakcjach
+kwasów z: metalami, tlenkami metali, wodorotlenkami metali i solami kwasów o
+mniejszej mocy);
+
+5)
+
+opisuje czynniki wpływające na moc kwasów karboksylowych (długość łańcucha
+węglowego, obecność polarnych podstawników);
+
+6)
+
+na podstawie wyników doświadczenia porównuje moc kwasów;
+
+7)
+
+wyszukuje, porządkuje i prezentuje informacje o zastosowaniu kwasów karboksylowych;
+
+8)
+
+wyszukuje, porządkuje i prezentuje informacje o budowie, występowaniu i
+zastosowaniach hydroksykwasów oraz możliwości tworzenia przez nie estrów
+międzycząsteczkowych (laktydy, poliestry) i wewnątrzcząsteczkowych (laktony).
+XVII. Estry i tłuszcze. Uczeń:
+
+1)
+
+opisuje strukturę cząsteczek estrów i wiązania estrowego;
+
+2)
+
+projektuje i przeprowadza reakcje estryfikacji; pisze równania reakcji alkoholi z kwasami
+nieorganicznymi i karboksylowymi; wskazuje na funkcję stężonego H2SO4;
+
+3)
+
+wskazuje wpływ różnych czynników na położenie stanu równowagi reakcji estryfikacji
+lub hydrolizy estru;
+
+4)
+
+wyjaśnia i porównuje przebieg hydrolizy estrów (np. octanu etylu, tłuszczów) w
+środowisku kwasowym (reakcja z wodą w obecności kwasu siarkowego(VI)) oraz w
+środowisku zasadowym (reakcja z wodorotlenkiem sodu); pisze odpowiednie równania
+reakcji;
+
+5)
+
+opisuje budowę tłuszczów stałych i ciekłych (jako estrów glicerolu i długołańcuchowych
+kwasów tłuszczowych);
+
+6)
+
+wyszukuje, porządkuje i prezentuje informacje o procesie usuwania brudu;
+
+7)
+
+zaznacza fragmenty hydrofobowe i hydrofilowe we wzorach cząsteczek substancji
+powierzchniowo czynnych;
+
+8)
+
+planuje ciągi przemian chemicznych wiążące ze sobą właściwości poznanych
+węglowodorów i ich pochodnych; pisze odpowiednie równania reakcji;
+
+– 295 –
+9)
+
+wyszukuje, porządkuje i prezentuje informacje o właściwościach fizycznych,
+chemicznych i zastosowaniach estrów i tłuszczów.
+XVIII. Związki organiczne zawierające azot. Uczeń:
+
+1)
+
+opisuje budowę amin; wskazuje wzory amin pierwszo-, drugo- i trzeciorzędowych;
+
+2)
+
+porównuje budowę amoniaku i amin; rysuje wzory elektronowe cząsteczek amoniaku i
+aminy (np. metyloaminy);
+
+3)
+
+wskazuje podobieństwa i różnice w budowie amin alifatycznych (np. metyloaminy) i amin
+aromatycznych (fenyloaminy (aniliny));
+
+4)
+
+porównuje i wyjaśnia przyczynę zasadowych właściwości amoniaku i amin; pisze
+odpowiednie równania reakcji;
+
+5)
+
+opisuje właściwości chemiczne amin na podstawie reakcji: z wodą, z kwasami
+nieorganicznymi i z kwasami karboksylowymi; pisze odpowiednie równania reakcji;
+
+6)
+
+pisze wzór ogólny α-aminokwasów w postaci RCH(NH2)COOH; wyjaśnia, co oznacza,
+że aminokwasy białkowe są α-aminokwasami i należą do szeregu konfiguracyjnego L;
+
+7)
+
+opisuje właściwości kwasowo-zasadowe aminokwasów oraz mechanizm powstawania
+jonów obojnaczych;
+
+8)
+
+pisze równania reakcji kondensacji cząsteczek aminokwasów (o podanych wzorach)
+prowadzących do powstania di- i tripeptydów i wskazuje wiązania peptydowe w
+otrzymanym produkcie;
+
+9)
+
+tworzy wzory dipeptydów i tripeptydów, powstających z podanych aminokwasów;
+rozpoznaje reszty aminokwasów białkowych w cząsteczkach peptydów;
+
+10) opisuje przebieg hydrolizy peptydów, rysuje wzory półstrukturalne (grupowe)
+aminokwasów powstających w procesie hydrolizy peptydu o danej strukturze;
+11) projektuje i przeprowadza doświadczenie, którego wynik dowiedzie obecności wiązań
+peptydowych w analizowanym związku (reakcja biuretowa).
+XIX. Białka. Uczeń:
+1)
+
+wyszukuje, porządkuje, porównuje i prezentuje informacje o budowie, właściwościach
+fizycznych, znaczeniu i zastosowaniu białek;
+
+2)
+
+obserwuje proces denaturacji białek wywołanej oddziaływaniem na nie soli metali
+ciężkich i wysokiej temperatury; wymienia czynniki wywołujące wysalanie białek i
+wyjaśnia ten proces;
+
+– 296 –
+3)
+
+wyszukuje, porządkuje, porównuje i prezentuje informacje o budowie drugorzędowej (αi β-) oraz trzeciorzędowej (wiązania jonowe, mostki disiarczkowe, wiązania wodorowe i
+oddziaływania van der Waalsa) białek;
+
+4)
+
+projektuje i przeprowadza doświadczenie pozwalające na identyfikację białek (reakcja
+biuretowa i reakcja ksantoproteinowa).
+XX. Cukry. Uczeń:
+
+1)
+
+dokonuje podziału cukrów na proste i złożone, klasyfikuje cukry proste ze względu na
+grupę funkcyjną i liczbę atomów węgla w cząsteczce; wyjaśnia, co oznacza, że naturalne
+monosacharydy należą do szeregu konfiguracyjnego D;
+
+2)
+
+wyszukuje, porządkuje i prezentuje informacje o pochodzeniu cukrów prostych,
+zawartych np. w owocach (fotosynteza);
+
+3)
+
+zapisuje wzory łańcuchowe w projekcji Fischera glukozy i fruktozy; wykazuje, że cukry
+proste należą do polihydroksyaldehydów lub polihydroksyketonów; rysuje wzory taflowe
+(Hawortha) anomerów α i β glukozy i fruktozy; na podstawie wzoru łańcuchowego
+monosacharydu rysuje jego wzory taflowe; na podstawie wzoru taflowego rysuje wzór w
+projekcji Fischera; rozpoznaje reszty glukozy i fruktozy w disacharydach i
+polisacharydach o podanych wzorach;
+
+4)
+
+projektuje i przeprowadza doświadczenie, którego wynik potwierdzi właściwości
+redukujące np. glukozy; projektuje i przeprowadza doświadczenie, którego wynik
+potwierdzi obecność grup hydroksylowych w cząsteczce monosacharydu, np. glukozy;
+
+5)
+
+projektuje i przeprowadza doświadczenie pozwalające na odróżnienie glukozy i fruktozy;
+
+6)
+
+wskazuje wiązanie O-glikozydowe w cząsteczkach cukrów o podanych wzorach (np.
+sacharozy, maltozy, celobiozy);
+
+7)
+
+wyjaśnia, dlaczego maltoza ma właściwości redukujące, a sacharoza nie wykazuje
+właściwości redukujących;
+
+8)
+
+obserwuje różnice we właściwościach skrobi i celulozy.
+XXI. Chemia wokół nas. Uczeń wyszukuje, porządkuje, porównuje i prezentuje
+
+informacje:
+1)
+
+o właściwościach leczniczych i toksycznych substancji chemicznych (dawka,
+rozpuszczalność w wodzie, sposób przenikania do organizmu), np. leków, nikotyny,
+etanolu;
+
+– 297 –
+2)
+
+na temat działania składników popularnych leków (np. węgla aktywowanego, kwasu
+acetylosalicylowego, środków neutralizujących nadmiar kwasu w żołądku);
+
+3)
+
+na temat składników zawartych w kawie, herbacie, mleku, wodzie mineralnej, napojach
+typu cola w aspekcie ich działania na organizm ludzki;
+
+4)
+
+o procesach zachodzących podczas wyrabiania ciasta i pieczenia chleba, produkcji wina,
+otrzymywania kwaśnego mleka, jogurtów, serów;
+
+5)
+
+o chemicznym składzie środków do mycia szkła, przetykania rur, czyszczenia metali
+i
+
+biżuterii
+
+w
+
+aspekcie
+
+zastosowań
+
+tych
+
+produktów;
+
+stosuje
+
+te
+
+środki,
+
+z uwzględnieniem zasad bezpieczeństwa.
+XXII. Elementy ochrony środowiska. Uczeń:
+1)
+
+tłumaczy, na czym polegają sorpcyjne właściwości gleby w uprawie roślin i ochronie
+środowiska; planuje i przeprowadza badanie kwasowości gleby oraz badanie właściwości
+sorpcyjnych gleby;
+
+2)
+
+wyszukuje, porządkuje i prezentuje informacje o rodzajach zanieczyszczeń powietrza,
+wody i gleby (np. metale ciężkie, węglowodory, produkty spalania paliw, freony, pyły,
+azotany(V), fosforany(V) (ortofosforany(V)), ich źródła oraz wpływ na stan środowiska
+naturalnego, w tym klimatu;
+
+3)
+
+proponuje sposoby ochrony środowiska naturalnego przed zanieczyszczeniem i
+degradacją zgodnie z zasadami zrównoważonego rozwoju;
+
+4)
+
+wskazuje potrzebę rozwoju gałęzi przemysłu chemicznego (leki, źródła energii,
+materiały); wskazuje problemy i zagrożenia wynikające z niewłaściwego planowania i
+prowadzenia procesów chemicznych; uzasadnia konieczność projektowania i wdrażania
+procesów chemicznych umożliwiających ograniczenie lub wyeliminowanie używania
+albo wytwarzania niebezpiecznych substancji; wyjaśnia zasady tzw. zielonej chemii.
+
+Warunki i sposób realizacji
+Podstawa programowa w zakresie przedmiotu chemia ma układ spiralny, a zagadnienia
+wprowadzone w szkole podstawowej są na tym etapie rozwijane i uzupełniane o nowe treści.
+Podczas realizacji podstawy programowej w zakresie przedmiotu chemia duży nacisk powinno
+się kłaść na kształtowanie umiejętności rozumowania, dostrzegania zależności przyczynowo-skutkowych, wnioskowania, analizy i syntezy informacji, czyli umiejętności i wiadomości
+niezbędnych do kontynuowania kształcenia na kierunkach przyrodniczych uczelni.
+
+– 298 –
+Istotną funkcję w nauczaniu chemii jako przedmiotu przyrodniczego pełni eksperyment
+chemiczny. Umożliwia on rozwijanie aktywności uczniów i kształtowanie samodzielności w
+działaniu. Dzięki samodzielnemu wykonywaniu doświadczeń lub ich aktywnej obserwacji
+uczniowie poznają metody badawcze oraz sposoby opisu i prezentacji wyników.
+Aby edukacja w zakresie chemii była możliwie najbardziej skuteczna, zajęcia należy prowadzić
+w niezbyt licznych grupach (podział na grupy) w salach wyposażonych w niezbędne sprzęty i
+odczynniki chemiczne. Nauczyciele mogą w doświadczeniach wykorzystywać substancje
+znane uczniom z życia codziennego (np. naturalne wskaźniki kwasowo-zasadowe, ocet, mąkę,
+cukier), pokazując w ten sposób obecność chemii w ich otoczeniu.
+Dobór wiadomości i umiejętności wskazuje na konieczność łączenia wiedzy teoretycznej z
+doświadczalną. Treści nauczania opracowano tak, aby uczniowie mogli sami obserwować i
+badać właściwości substancji i zjawiska oraz projektować i przeprowadzać doświadczenia
+chemiczne, interpretować ich wyniki i formułować uogólnienia. Istotne jest również
+samodzielne wykorzystywanie i przetwarzanie informacji oraz kształtowanie nawyków ich
+krytycznej oceny.
+Zakres treści nauczania stwarza wiele możliwości pracy metodą projektu edukacyjnego
+(szczególnie o charakterze badawczym), metodą eksperymentu chemicznego lub innymi
+metodami pobudzającymi aktywność poznawczą uczniów, co pozwoli im na pozyskiwanie i
+przetwarzanie informacji na różne sposoby i z różnych źródeł. Obserwowanie, wyciąganie
+wniosków, stawianie hipotez i ich weryfikacja mogą nauczyć uczniów twórczego i krytycznego
+myślenia. Może to pomóc w kształtowaniu postawy odkrywcy i badacza, który umie
+weryfikować poprawność nowych informacji.
+W pozyskiwaniu niezbędnych informacji, wykonywaniu obliczeń, interpretowaniu wyników i
+wreszcie rozwiązywaniu bardziej złożonych problemów metodą projektu edukacyjnego, bardzo
+pomocnym narzędziem może okazać się komputer z celowo dobranym oprogramowaniem oraz
+dostępnymi w Internecie zasobami cyfrowymi. Kształcone w ten sposób kompetencje pozwolą
+na osiąganie umiejętności poszukiwania, gromadzenia, przetwarzania, oceniania i krytycznego
+wykorzystywania informacji. Zastosowanie technologii informacyjno-komunikacyjnych jako
+narzędzia na lekcjach chemii pozwoli na rozwijanie krytycznego myślenia, pobudzi
+kreatywność i innowacyjność, a w dalszej perspektywie spowoduje proaktywne nastawienie i
+chęć tworzenia innowacyjnych rozwiązań. Takie przygotowanie spowoduje, że uczniowie będą
+potrafili efektywnie funkcjonować w stale ewoluującym świecie. Treści nauczania opisane
+
+– 299 –
+czasownikami operacyjnymi: wyszukuje, porządkuje, porównuje, prezentuje opisują
+umiejętności, które nie są związane z przyswajaniem wiadomości przez zapamiętywanie i nie
+powinny być egzekwowane jako wiedza faktograficzna.
+W procesie kształcenia chemicznego istnieje konieczność skoncentrowania się na rozwijaniu
+umiejętności zorientowanych na przyszłość, które mogą stanowić jeden z fundamentów
+osiągnięcia sukcesu w dynamicznym środowisku zawodowym. Jednym z kluczowych
+elementów osiągania sukcesu zawodowego jest zdolność do szybkiego przyswajania informacji
+dostępnych w wyniku nowych odkryć i postępów naukowych. Ponadto istotne jest nabywanie
+i rozwijanie umiejętności kompleksowego rozwiązywania problemów. Myślenie analityczne i
+krytyczne, w tym umiejętne wyciąganie wniosków poprzedzone analizą danych, stanowi
+kolejny kluczowy aspekt, za pomocą którego możliwe jest głębsze zrozumienie zjawisk
+chemicznych. Równocześnie umiejętności oceny i podejmowania decyzji są niezbędne, aby
+skutecznie zarządzać i podejmować trafne decyzje w różnorodnych sytuacjach. Rejestrowanie
+i ocena uzyskanych wyników to istotny element, który wspiera rozwój umiejętności
+samooceny. Poprzez systematyczne analizowanie wyników eksperymentów czy projektów,
+uczniowie uzyskują możliwość oceny efektywności swojej pracy i mogą podejmować
+świadome decyzje dotyczące dalszego rozwoju. Wspólnie te umiejętności tworzą solidny
+fundament dla absolwentów kształcenia chemicznego, przygotowując ich do wyzwań i
+dynamicznych zmian w dziedzinie chemii.
+Wskazuje się następujący minimalny zestaw doświadczeń do wykonania samodzielnie przez
+uczniów lub w formie pokazu nauczycielskiego:
+1)
+
+porównanie masy substratów i masy produktów reakcji chemicznej;
+
+2)
+
+badanie wydajności reakcji chemicznej;
+
+3)
+
+badanie wybranych właściwości chemicznych (np. zachowania wobec wody)
+pierwiastków należących do jednej grupy/okresu;
+
+4)
+
+badanie właściwości fizycznych substancji tworzących kryształy jonowe, kowalencyjne,
+molekularne i metaliczne;
+
+5)
+
+badanie wpływu różnych czynników (stężenia, ciśnienia, substratów, temperatury,
+obecności katalizatora i stopnia rozdrobnienia substratów) na szybkość reakcji;
+
+6)
+
+badanie efektu energetycznego reakcji chemicznej;
+
+7)
+
+badanie wpływu temperatury i stężenia reagentów na stan równowagi chemicznej;
+
+8)
+
+sporządzanie roztworów o określonym stężeniu procentowym i molowym;
+
+9)
+
+rozdzielanie mieszaniny niejednorodnej i jednorodnej na składniki (np. ekstrakcja i
+
+– 300 –
+rozdzielanie chromatograficzne barwników roślinnych);
+10)
+
+badanie odczynu oraz pH wodnych roztworów kwasów, zasad i soli;
+
+11)
+
+miareczkowanie zasady kwasem (kwasu zasadą) w obecności wskaźnika;
+
+12)
+
+badanie właściwości amfoterycznych tlenków i wodorotlenków;
+
+13)
+
+badanie charakteru chemicznego wybranych tlenków i wodorków pierwiastków 3.
+okresu;
+
+14)
+
+otrzymywanie kwasów, zasad i soli różnymi metodami;
+
+15)
+
+badanie wpływu odczynu środowiska na przebieg reakcji utleniania-redukcji;
+
+16)
+
+budowa i pomiar napięcia ogniwa galwanicznego;
+
+17)
+
+badanie korozji metali;
+
+18)
+
+badanie aktywności chemicznej metali;
+
+19)
+
+badanie właściwości metali (reakcje z tlenem, wodą, kwasami);
+
+20)
+
+badanie działania kwasów utleniających (roztworów rozcieńczonych i stężonych) na
+wybrane metale;
+
+21)
+
+otrzymywanie wodoru (np. w reakcji Zn z HCl(aq));
+
+22)
+
+badanie aktywności chemicznej fluorowców;
+
+23)
+
+otrzymywanie tlenu (np. w reakcji rozkładu H2O2 lub KMnO4);
+
+24)
+
+odróżnianie skał wapiennych od innych skał i minerałów;
+
+25)
+
+badanie reaktywności węglowodorów nasyconych, nienasyconych i aromatycznych, ze
+zwróceniem uwagi na różnice w ich właściwościach (np. spalanie, zachowanie wobec
+chlorowca, wodnego roztworu manganianu(VII) potasu);
+
+26)
+
+badanie zachowania alkoholi pierwszo-, drugo- i trzeciorzędowych wobec utleniaczy;
+
+27)
+
+badanie zachowania alkoholi wobec wodorotlenku miedzi(II);
+
+28)
+
+odróżnianie fenoli od alkoholi (np. w reakcji z NaOH, zachowanie wobec wodnego
+roztworu FeCl3);
+
+29)
+
+otrzymywanie etanalu i badanie jego właściwości;
+
+30)
+
+reakcja metanalu z odczynnikiem Tollensa i z wodorotlenkiem miedzi(II);
+
+31)
+
+odróżnianie aldehydów od ketonów (np. próba Trommera);
+
+32)
+
+badanie właściwości fizycznych i chemicznych kwasów karboksylowych;
+
+33)
+
+porównywanie mocy kwasów karboksylowych i nieorganicznych;
+
+34)
+
+badanie właściwości wyższych kwasów karboksylowych, odróżnianie kwasów
+nasyconych od nienasyconych;
+
+35)
+
+otrzymywanie estrów (np. w reakcji alkoholu etylowego z kwasem octowym);
+
+36)
+
+badanie odczynu wodnych roztworów: amin, acetamidu;
+
+– 301 –
+37)
+
+badanie obecności wiązań peptydowych w białkach (reakcja biuretowa);
+
+38)
+
+badanie działania różnych substancji (np. soli metali ciężkich, alkoholu) i wysokiej
+temperatury na roztwór białka;
+
+39)
+
+badanie zachowania się białka w reakcji ksantoproteinowej;
+
+40)
+
+badanie właściwości cukrów prostych (np. glukozy i fruktozy) oraz złożonych
+(sacharozy, skrobi i celulozy);
+
+41)
+
+badanie obecności grup hydroksylowych w cząsteczce glukozy oraz badanie właściwości
+redukujących;
+
+42)
+
+badanie hydrolizy cukrów złożonych i wykrywanie produktów reakcji;
+
+43)
+
+wykrywanie
+
+obecności
+
+grup
+
+funkcyjnych
+
+w
+
+związkach
+
+organicznych
+
+(-OH, -CHO, -COOH, -NH2, wiązania peptydowego, wiązania wielokrotnego).
+
+

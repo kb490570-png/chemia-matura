@@ -106,8 +106,20 @@ R.ark=()=>{const a=LS.get("ark",null);
    A.open.forEach(oi=>{localStorage.removeItem("cv_o"+oi);const og=LS.get("og",{});delete og["o"+oi];LS.set("og",og)});localStorage.removeItem("ark");R.ark()}}
  score()};
 // ===== Teoria rozszerzona + wzory =====
-R.th=()=>{app.innerHTML=Object.entries(TOPICS).map(([k,v])=>`<details class="card th"><summary><b>${v}</b></summary>${TH[k]}<h4>Rozszerzenie</h4>${TH_EXTRA[k].more}<h4>⚠️ Typowe błędy na maturze</h4><ul>${TH_EXTRA[k].err.map(x=>`<li>${x}</li>`).join("")}</ul>
- <div class="row"><button onclick="go('quiz');setTimeout(()=>{$('#qt').value='${k}'},0)">Quiz z działu →</button><button onclick="go('p100');setTimeout(()=>{$('#pt3').value='${k}';$('#pt3').onchange()},0)">Zadania otwarte →</button></div></details>`).join("")};
+const thTxt=h=>h.replace(/<[^>]+>/g," ").replace(/\s+/g," ");
+const thSec=(k,x)=>{const rd=LS.get("read",{});return`<details class="card ths" data-k="${k}" data-id="${x.id}"><summary><span class="rk">${rd[x.id]?"✅":"⬜"}</span> ${x.t} <span class="muted">${x.pp&&x.pp!=="–"?"PP "+x.pp:""}</span></summary><div class="thb"></div></details>`};
+function thFill(d){const b=d.querySelector(".thb");if(b.dataset.ok)return;const k=d.dataset.k,x=TX[k].find(s=>s.id===d.dataset.id);const rd=LS.get("read",{});
+ b.innerHTML=x.h+(x.sq.length?`<h4>🧠 Sprawdź się</h4>`+x.sq.map(([q,a])=>`<div class="sq"><p>${q}</p><details><summary>Pokaż odpowiedź</summary><p>${a}</p></details></div>`).join(""):"")+
+ `<div class="row"><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" class="rdc" ${rd[x.id]?"checked":""}> przeczytane</label><button onclick="go('quiz');setTimeout(()=>{$('#qt').value='${k}'},0)">Quiz z działu →</button><button onclick="go('p100');setTimeout(()=>{$('#pt3').value='${k}';$('#pt3').onchange()},0)">Zadania 100% →</button></div>`;
+ b.dataset.ok=1;b.querySelector(".rdc").onchange=e=>{const r=LS.get("read",{});if(e.target.checked)r[x.id]=1;else delete r[x.id];LS.set("read",r);d.querySelector(".rk").textContent=e.target.checked?"✅":"⬜";thCount()}}
+function thCount(){const r=LS.get("read",{});document.querySelectorAll(".tht").forEach(e=>{const k=e.dataset.k;e.textContent=`${TX[k].filter(s=>r[s.id]).length}/${TX[k].length}`});const n=Object.values(TX).flat().length,m=Object.values(TX).flat().filter(s=>r[s.id]).length;const t=$("#thall");if(t)t.textContent=`Przeczytane: ${m}/${n} podrozdziałów`}
+function thBind(root){root.querySelectorAll("details.ths").forEach(d=>d.addEventListener("toggle",()=>{if(d.open)thFill(d)}))}
+R.th=()=>{app.innerHTML=`<div class="card"><h2>📚 Teoria – matura rozszerzona</h2><input id="ths" type="search" placeholder="Szukaj w całej teorii (np. Tollens, Markownikow, pH)…" style="width:100%"><p class="muted" id="thall"></p></div><div id="thr"></div><div id="thl">`+
+ Object.entries(TOPICS).map(([k,v])=>`<details class="card th" data-k="${k}"><summary><b>${v}</b> <span class="muted tht" data-k="${k}"></span></summary><div class="toc"></div></details>`).join("")+`<details class="card"><summary><b>Skrót + typowe błędy (stara wersja)</b></summary>${Object.keys(TOPICS).map(k=>`<h4>${TOPICS[k]}</h4>${TH[k]}<ul>${TH_EXTRA[k].err.map(x=>`<li>${x}</li>`).join("")}</ul>`).join("")}</details></div>`;
+ app.querySelectorAll("details.th").forEach(d=>d.addEventListener("toggle",()=>{const t=d.querySelector(".toc");if(d.open&&!t.innerHTML){t.innerHTML=TX[d.dataset.k].map(x=>thSec(d.dataset.k,x)).join("");thBind(t)}}));
+ thCount();let tm;$("#ths").oninput=e=>{clearTimeout(tm);tm=setTimeout(()=>{const q=e.target.value.trim().toLowerCase();const r=$("#thr"),l=$("#thl");if(q.length<2){r.innerHTML="";l.style.display="";return}l.style.display="none";
+  const hits=[];for(const k in TX)TX[k].forEach(x=>{const s=(x.t+" "+thTxt(x.h)+" "+x.sq.flat().join(" ")).toLowerCase();if(s.includes(q))hits.push([k,x])});
+  r.innerHTML=`<p class="muted card">Wyniki: ${hits.length}</p>`+hits.slice(0,40).map(([k,x])=>thSec(k,x).replace("</summary>",` · ${TOPICS[k]}</summary>`)).join("");thBind(r)},200)}};
 R.wz=()=>{app.innerHTML=`<div class="card wz">${WZORY}</div>`};
 // start: extra info
 const _start=R.start;R.start=()=>{_start();const og=LS.get("og",{}),e=Object.keys(LS.get("errs",{})).length;let p=0,m=0;Object.values(og).forEach(g=>{p+=g.pts;m+=g.max});
