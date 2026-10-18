@@ -74,6 +74,8 @@ CH3CH2OMgBr + H2O > CH3CH2OH + Mg(OH)Br
 CH3CH2OH + H2SO4 > CH3CH2OSO3H + H2O
 C6H5OH + Na2CO3 > C6H5ONa + NaHCO3
 2CH3COOH + Na2CO3 > 2CH3COONa + CO2 + H2O"""
+import sys
+for f in sys.argv[1:]: E+="\n"+open(f).read().strip()
 bad=0
 for l in E.split('\n'):
     a,b=l.split(' > ');A,qa=side(a);B,qb=side(b);A.pop('e',0);B.pop('e',0)

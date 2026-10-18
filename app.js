@@ -20,7 +20,8 @@ let qz;
 R.quiz=()=>{app.innerHTML=`<div class="card"><h2>Quiz</h2><label>Dział</label><select id="qt">${topicOpts()}</select>
 <label>Liczba pytań</label><select id="qn"><option>10</option><option>20</option><option>40</option><option value="999">wszystkie</option></select>
 <label>Typ</label><select id="qy"><option value="">wszystkie</option><option value="c">tylko zamknięte</option><option value="n">tylko obliczeniowe</option></select>
-<p><button class="pri" id="qs">Start</button></p></div>`;
+<p><button class="pri" id="qs">Start</button> <button id="qaf">🧪 Test: alkohole i fenole (${Q.filter(q=>q.af).length} pyt.)</button></p></div>`;
+$("#qaf").onclick=()=>{const y=$("#qy").value;let pool=Q.filter(q=>q.af&&(!y||(y==="n")===("n" in q)));pool.sort(()=>Math.random()-.5);qz={list:pool.slice(0,+$("#qn").value),i:0,ok:0,pts:0,max:0};showQ()};
 $("#qs").onclick=()=>{const t=$("#qt").value,y=$("#qy").value;let pool=Q.filter(q=>(!t||q.t===t)&&(!y||(y==="n")===("n" in q)));
 pool.sort(()=>Math.random()-.5);qz={list:pool.slice(0,+$("#qn").value),i:0,ok:0};showQ()}};
 function stat(t,ok){const s=LS.get("stats",{});s[t]=s[t]||[0,0];s[t][1]++;if(ok)s[t][0]++;LS.set("stats",s)}
