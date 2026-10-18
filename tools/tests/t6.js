@@ -1,0 +1,18 @@
+const p=require('puppeteer-core');const U=process.argv[2];const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{const b=await p.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});const g=await b.newPage();await g.setViewport({width:820,height:1180,deviceScaleFactor:2});
+await g.evaluateOnNewDocument(()=>{localStorage.setItem('ksSkip','1');localStorage.setItem('ai',JSON.stringify({prov:'gemini',key:'AQ.test',gkey:'AQ.test'}))});
+const errs=[];g.on('pageerror',e=>errs.push(e.message));
+await g.setRequestInterception(true);g.on('request',r=>{if(!/googleapis/.test(r.url()))return r.continue();const H={'access-control-allow-origin':'*','access-control-allow-headers':'*'};if(r.method()==='OPTIONS')return r.respond({status:204,headers:H});
+ const pr=JSON.parse(r.postData()).contents[0].parts[0].text;const k=(pr.match(/^K\d+ \(max/gm)||[]).length;const t=JSON.stringify({odczyt:"x",kryteria:Array.from({length:k},(_,i)=>({pkt:1,uzasadnienie:"ok"+i})),wskazowki:"",czytelne:true});
+ r.respond({status:200,contentType:'application/json',headers:H,body:JSON.stringify({candidates:[{content:{parts:[{text:t}]}}]})})});
+await g.goto(U+'#th',{waitUntil:'networkidle0'});
+const c=await g.evaluate(()=>({Q:Q.length,FC:FC.length,OQ:OQ.length,af:TX.org2.filter(x=>x.id.startsWith('af-')).length,src:document.querySelector('script[src*=alkfen_q]').getAttribute('src')}));
+await g.evaluate(()=>{document.querySelector('details.th[data-k=org2]').open=true});await sleep(300);
+await g.evaluate(()=>{const d=document.querySelector('details.ths[data-id=af-fpier]');d.open=true;d.scrollIntoView()});await sleep(400);await g.screenshot({path:'/workspace/alk_fenol.png'});
+await g.type('#ths','pikrynowy');await sleep(500);const hits=await g.$eval('#thr p',e=>e.innerText);
+await g.goto(U+'#p100',{waitUntil:'networkidle0'});await g.evaluate(()=>showOpen(OQ.length-1));await sleep(300);
+const last=await g.evaluate(()=>document.querySelector('#ot h3').innerText.slice(0,50)+' | sol hidden:'+(document.querySelector('.res').innerText===''));
+await g.type('.otx','n C6H5OH + n HCHO ...');await g.click('.chk');await g.waitForFunction(()=>document.querySelector('.res').innerText.includes('pkt'),{timeout:20000});const graded=await g.$eval('.res',e=>e.innerText.slice(0,60));
+await g.goto(U+'#quiz',{waitUntil:'networkidle0'});await g.evaluate(()=>{qz={list:Q.slice(-28,-3),i:0,ok:0,pts:0,max:0};showQ()});await sleep(200);await g.click('.opt');const quiz=await g.$eval('#fb',e=>e.innerText.slice(0,50));
+await g.goto(U+'#fc',{waitUntil:'networkidle0'});await g.select('#ft','org2');await sleep(200);const fc=await g.$eval('#fa',e=>e.innerText.slice(0,80));
+console.log(JSON.stringify({c,hits,last,graded,quiz,fc,errs},null,1));await b.close()})();
